@@ -1,0 +1,173 @@
+\begin{table*}[b]
+\centering
+\caption{Local Association Results $p(Y_l|T)$ are \textit{Jensen-Shannon Dist}. Causal Effects are ATEs $p(Y_l|do(T))$ \\(bold:strong corr., background:best effect)}
+\vspace{0.2cm}
+\label{tab:resultsLocalJS}
+
+\scalebox{0.60}{%
+
+
+%%%%%%%%%%%%%%%%%
+
+\begin{tabular}{@{}l|rrrrrr|rrrrrr@{}}
+\toprule
+\textbf{\begin{tabular}[c]{@{}l@{}}Counterfactual  \\ Interventions $T_{data}$\end{tabular}} &
+  \multicolumn{6}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterI \\ $T_{dat0}$\end{tabular}}} &
+  \multicolumn{6}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterIII\\ $T_{dat1}$\end{tabular}}} \\ \midrule
+\nlm &
+  \multicolumn{3}{c}{\textit{\gru}} &
+  \multicolumn{3}{c|}{\textit{\tf}} &
+  \multicolumn{3}{c}{\textit{\gru}} &
+  \multicolumn{3}{c}{\textit{\tf}} \\ \midrule
+\textbf{Categories} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoJS\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoJS\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoJS\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoJS\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} \\ \midrule
+\blocks &
+  \colorbox{blue!10}{\textbf{0.626}} &
+  -0.0005 &
+  -0.00052 &
+  0.206 &
+  -0.0001 &
+  -0.000115 &
+  {0.133} &
+  0.0003 &
+  0.000488 &
+  {0.052} &
+  -0.0006 &
+  -0.000352 \\
+\exceptions &
+  {0.107} &
+  -1.00E-06 &
+  1.00E-06 &
+  \colorbox{blue!10}{\textbf{0.651}} &
+  \colorbox{blue!10}{-1.20E-05} &
+  -1.10E-05 &
+  {0.165} &
+  -4.80E-05 &
+  -4.80E-05 &
+  {0.091} &
+  \colorbox{blue!10}{-1.20E-05} &
+  -4.20E-05 \\
+\oop &
+  {0.048} &
+  2.00E-05 &
+  1.20E-05 &
+  {0.058} &
+  -1.30E-05 &
+  -9.00E-06 &
+  {0.070} &
+  -7.00E-06 &
+  -4.70E-05 &
+  \colorbox{blue!10}{0.090} &
+  \colorbox{blue!10}{-4.90E-05} &
+  -2.60E-05 \\
+\tests &
+  0.581 &
+  9.00E-06 &
+  8.00E-06 &
+  \colorbox{blue!10}{\textbf{0.997}} &
+  1.00E-05 &
+  9.00E-06 &
+  0.595 &
+  1.90E-05 &
+  4.00E-05 &
+  \textbf{0.724} &
+  \colorbox{blue!10}{-1.70E-05} &
+  2.00E-06 \\
+\declarations &
+  {0.071} &
+  4.00E-06 &
+  4.00E-06 &
+  {0.054} &
+  1.00E-06 &
+  1.00E-06 &
+  {0.061} &
+  -2.10E-05 &
+  -0.000145 &
+  \colorbox{blue!10}{0.148} &
+  \colorbox{blue!10}{4.60E-05} &
+  6.00E-05 \\
+\conditionals &
+  0.345 &
+  -3.90E-05 &
+  -3.90E-05 &
+  {0.176} &
+  -8.00E-06 &
+  -1.00E-05 &
+  {0.111} &
+  8.00E-06 &
+  7.40E-05 &
+  \colorbox{blue!10}{\textbf{0.821}} &
+  \colorbox{blue!10}{-0.000596} &
+  -0.000603 \\
+\loops &
+  {0.130} &
+  -2.00E-06 &
+  -3.00E-06 &
+  \colorbox{blue!10}{0.323} &
+  \colorbox{blue!10}{2.10E-05} &
+  1.90E-05 &
+  {0.027} &
+  -1.70E-05 &
+  1.50E-05 &
+  {0.085} &
+  1.80E-05 &
+  3.00E-06 \\
+\operators &
+  {0.123} &
+  -6.00E-06 &
+  -5.00E-06 &
+  {0.039} &
+  1.50E-05 &
+  1.10E-05 &
+  0.278 &
+  0.0002 &
+  0.000345 &
+  \colorbox{blue!10}{\textbf{0.998}} &
+  \colorbox{blue!10}{0.0079} &
+  0.008991 \\
+\datatype &
+  0.253 &
+  -1.00E-05 &
+  -1.00E-05 &
+  {0.168} &
+  9.00E-06 &
+  1.00E-05 &
+  \colorbox{blue!10}{\textbf{0.749}} &
+  \colorbox{blue!10}{0.0003} &
+  0.000328 &
+  0.432 &
+  0.0002 &
+  0.000111 \\
+\extra &
+  {0.169} &
+  2.60E-05 &
+  2.00E-05 &
+  {0.121} &
+  5.70E-05 &
+  6.00E-05 &
+  0.368 &
+  0.0014 &
+  0.001016 &
+ \colorbox{blue!10}{0.526} &
+  0.0024 &
+  0.002004 \\ \bottomrule
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%
+
+
+}
+\vspace{-0.1cm}
+
+\end{table*}

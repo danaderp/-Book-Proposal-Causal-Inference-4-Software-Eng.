@@ -1,0 +1,246 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tufte-Style Book (Documentation Template)
+% LaTeX Template
+% Version 1.0 (5/1/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% The Tufte-LaTeX Developers (tufte-latex.googlecode.com)
+%
+% License:
+% Apache License (Version 2.0)
+%
+% IMPORTANT NOTE:
+% In addition to running BibTeX to compile the reference list from the .bib
+% file, you will need to run MakeIndex to compile the index at the end of the
+% document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[nobib,xcolor=table]{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\usepackage{microtype} % Improves character and word spacing
+
+\usepackage{lipsum} % Inserts dummy text
+
+\usepackage{booktabs} % Better horizontal rules in tables
+
+\usepackage{graphicx} % Needed to insert images into the document
+
+\usepackage{tikz} % This is for inline circles 
+
+\graphicspath{{graphics/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\usepackage{units} % Used for printing standard units
+
+\usepackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+\usepackage{subcaption} %<---Using Sub Figures
+\usepackage{booktabs} %<---Table Generator
+\usepackage{multirow} %<---Table Generator
+\usepackage{enumitem} %<---Arabic Enumerations
+\usepackage{wrapfig}
+
+
+
+%\usepackage{biblatex}
+%\usepackage{natbib}
+
+%----------------------------------------------------------------------------------------
+%	GENERAL CONFIG
+%----------------------------------------------------------------------------------------
+
+\setcounter{tocdepth}{1} % Show sections in Contents
+%\PassOptionsToPackage{table}{xcolor}  %<--- Colors for the Tables
+%\PassOptionsToPackage{xcdraw}{xcolor}  %<--- Colors for the Tables
+
+%\definecolor{main}{HTML}{5989cf}    % setting main color to be used
+%\definecolor{sub}{HTML}{cde4ff}     % setting sub color to be used
+
+
+%----------------------------------------------------------------------------------------
+%	MACROS
+%----------------------------------------------------------------------------------------
+\include{macros}
+
+%----------------------------------------------------------------------------------------
+%	BOOK META-INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{At the Interface of {\color{blue}Causality} \& \hfill \break Artificial Software Engineering } % Title of the book
+
+\author[]{David N. Palacio} % Author
+
+%\publisher{Publisher of This Book} % Publisher
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+
+
+\frontmatter
+
+%----------------------------------------------------------------------------------------
+%	EPIGRAPH
+%----------------------------------------------------------------------------------------
+
+%\thispagestyle{empty}
+%\openepigraph{The public is more familiar with bad design than good design. It is, in effect, conditioned to prefer bad design, because that is what it lives with. The new becomes threatening, the old reassuring.}{Paul Rand, {\itshape Design, Form, and Chaos}}
+%\vfill
+%\openepigraph{A designer knows that he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.}{Antoine de Saint-Exup\'{e}ry}
+%\vfill
+%\openepigraph{\ldots the designer of a new system must not only be the implementor and the first large-scale user; the designer should also write the first user manual\ldots If I had not participated fully in all these activities, literally hundreds of improvements would never have been made, because I would never have thought of them or perceived why they were important.}{Donald E. Knuth}
+
+%----------------------------------------------------------------------------------------
+
+\maketitle % Print the title page
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\\ \thanklessauthor
+
+%\par\smallcaps{Published by \thanklesspublisher}
+
+%\par\smallcaps{tufte-latex.googlecode.com}
+
+\par A dissertation presented to the Graduate Faculty of the College of William \& Mary in Candidacy for the Degree of Doctor of Philosophy, College of William \& Mary 
+
+%Licensed under the Apache License, Version 2.0 (the ``License''); you may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://www.apache.org/licenses/LICENSE-2.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \smallcaps{``AS IS'' BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\index{license}
+
+\par\textit{First printing, \monthyear}
+\end{fullwidth}
+
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Print the table of contents
+
+%----------------------------------------------------------------------------------------
+
+\listoffigures % Print a list of figures
+
+%----------------------------------------------------------------------------------------
+
+\listoftables % Print a list of tables
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION PAGE
+%----------------------------------------------------------------------------------------
+
+\input{chapters/0-dedication}
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+
+\input{chapters/0-abstract}
+
+%----------------------------------------------------------------------------------------
+%	ACK PAGE
+%----------------------------------------------------------------------------------------
+
+\input{chapters/0-acknowledgments} 
+
+%----------------------------------------------------------------------------------------
+
+\mainmatter
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 1: INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\input{chapters/1-introduction}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 2: PRELIMINARIES
+%----------------------------------------------------------------------------------------
+\input{chapters/2-preliminaries}
+
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 3: CAUSALITY 4 A-SOFTWARE-E
+%----------------------------------------------------------------------------------------
+\input{chapters/2-preliminaries}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PART I
+%----------------------------------------------------------------------------------------
+
+\part{Causality Applications I. Deep Code Retrieval}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 3
+%----------------------------------------------------------------------------------------
+\input{chapters/3-applicationsI-intro}
+
+%----------------------------------------------------------------------------------------
+
+\input{chapters/3-applicationsI-approach}
+
+%----------------------------------------------------------------------------------------
+%	PART II
+%----------------------------------------------------------------------------------------
+
+\part{Causality Applications II. Deep Code Interpretability}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 4
+%----------------------------------------------------------------------------------------
+\input{chapters/4-applicationsII-intro}
+
+%----------------------------------------------------------------------------------------
+
+\input{chapters/4-applicationsII-approach}
+
+%----------------------------------------------------------------------------------------
+
+\input{chapters/miscell} %REMOVE when DONE
+
+%----------------------------------------------------------------------------------------
+
+\backmatter
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+\bibliographystyle{alpha} % Use the plainnat/dinat style of referencing
+\bibliography{references/bibliographyII} % Use the bibliography.bib file for the bibliography
+
+
+%----------------------------------------------------------------------------------------
+
+\printindex % Print the index at the very end of the document
+
+\end{document}

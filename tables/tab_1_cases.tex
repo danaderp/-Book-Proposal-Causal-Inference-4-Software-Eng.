@@ -1,0 +1,91 @@
+\begin{table*}[b]
+\centering
+\caption{Counterfactual Interventions Case Study. NLMs include Recurrent Nets (GRUs) and Transformers (TFs). 
+%The units of TFs are heads [hds]. 
+}
+\vspace{0.2cm}
+\label{tab:method}
+
+\scalebox{0.65}{%
+%%%%%%%%%%%%%%%%%
+
+\begin{tabular}{@{}llllll|llll@{}}
+\toprule
+\multicolumn{6}{c|}{\textbf{Case Study Methodology}} &
+  \multicolumn{4}{c}{\textbf{\nlms Training}} \\ \midrule
+\multicolumn{4}{c}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Counterfactual\\ Interventions\end{tabular}}}} &
+  \multicolumn{2}{c|}{\textit{\textbf{\begin{tabular}[c]{@{}c@{}}Proposed Experiments\\ Global and Local\end{tabular}}}} &
+  \multicolumn{1}{c}{\textit{\textbf{RNNs}}} &
+  \multicolumn{1}{c|}{\textit{\textbf{Transformers}}} &
+  \multicolumn{1}{c}{\textit{\textbf{Hyper.}}} &
+  \multicolumn{1}{c}{\textit{\textbf{Val.}}} \\ \midrule
+\multicolumn{1}{c}{\textit{Type}} &
+  \multicolumn{1}{c}{\textit{Interv.}} &
+  \multicolumn{1}{c}{\textit{Case}} &
+  \multicolumn{1}{c}{\textit{Associated Dataset}} &
+  \multicolumn{1}{c}{\textit{Avg. Causation}} &
+  \multicolumn{1}{c|}{\textit{Correlation}} &
+  \textit{\nlm $_{lyr,unt}$} &
+  \multicolumn{1}{l|}{\textit{\nlm$_{lyr,hds}$}} &
+  \multirow{6}{*}{\begin{tabular}[c]{@{}l@{}}dropout RNN\citep{Karampatsis2020BigCode}\\ dropout TF\\ optimizer\citep{Kingma2015AdamAM}\\ learning rate\\ beta1$|$beta2\\ epsilon\\ epochs\\ batch RNN$|$TG\end{tabular}} &
+  \multirow{6}{*}{\begin{tabular}[c]{@{}l@{}}0.5\\ 0.l\\ adam\\ 1e-3\\ 0.9\\ 1e-7\\ 64\\ 512$|$128\end{tabular}} \\ \cmidrule(r){1-8}
+\multirow{3}{*}{\textit{Data}} &
+  $T_{dat0}$ &
+  \datainterI &
+  \BuggyTB\citep{Tufano2019LearningBug-Fixes} &
+  \colorbox{blue!10}{$p(Y_{g,l}|do(T_{dat0}))$} &
+  \colorbox{blue!10}{$p(Y_{g,l}|T_{dat0})$} &
+  \multirow{5}{*}{\begin{tabular}[c]{@{}l@{}}\rnn\\ \gru\\ \grui\\ \gruii\\ \gruiii\\ \gruiv\end{tabular}} &
+  \multicolumn{1}{l|}{\multirow{5}{*}{\begin{tabular}[c]{@{}l@{}}\tf\\ \tfi\\ \tfii\end{tabular}}} &
+   &
+   \\
+ &
+  $T_{dat1}$ &
+  \datainterIII &
+  \CommentsTB\citep{husain2019codesearchnet} &
+  \colorbox{blue!10}{$p(Y_{g,l}|do(T_{dat1}))$} &
+  \colorbox{blue!10}{$p(Y_{g,l}|T_{dat1})$} &
+   &
+  \multicolumn{1}{l|}{} &
+   &
+   \\
+ &
+  $T_{dat2}$ &
+  \datainterII &
+  \begin{tabular}[c]{@{}l@{}}\BigCloneIITB\citep{Svajlenko2015EvaluatingBigCloneBench}\\ \BigCloneIIITB\citep{Svajlenko2015EvaluatingBigCloneBench}\end{tabular} &
+  \colorbox{blue!10}{$p(Y_{g,l}|do(T_{dat2}))$} &
+  \colorbox{blue!10}{$p(Y_{g,l}|T_{dat2})$} &
+   &
+  \multicolumn{1}{l|}{} &
+   &
+   \\ \cmidrule(r){1-6}
+\multirow{2}{*}{\textit{Model}} &
+  $T_{hyp0}$ &
+  \modelinterI &
+  \multirow{2}{*}{\training\citep{husain2019codesearchnet}} &
+  \colorbox{blue!10}{$p(Y_{g,l}|do(T_{hyp0}))$} &
+  \colorbox{blue!10}{$p(Y_{g,l}|T_{hyp0})$} &
+   &
+  \multicolumn{1}{l|}{} &
+   &
+   \\
+ &
+  $T_{hyp1}$ &
+  \modelinterII &
+   &
+  \colorbox{blue!10}{$p(Y_{g,l}|do(T_{hyp1}))$} &
+  \colorbox{blue!10}{$p(Y_{g,l}|T_{hyp1})$} &
+   &
+  \multicolumn{1}{l|}{} &
+   &
+   \\ \bottomrule
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%
+
+
+}
+\vspace{-0.35cm}
+
+\end{table*}

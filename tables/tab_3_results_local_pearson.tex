@@ -1,0 +1,172 @@
+\begin{table*}[b]
+\centering
+\caption{Local Association Results $p(Y_l|T)$ are \textit{Pearson Corr}. Causal Effects are ATEs $p(Y_l|do(T))$.
+}
+\vspace{0.2cm}
+\label{tab:resultsLocalPearson}
+
+\scalebox{0.60}{%
+
+
+%%%%%%%%%%%%%%%%%
+
+\begin{tabular}{l|rrrrrr|rrrrrr}
+\hline
+\textbf{\begin{tabular}[c]{@{}l@{}}Counterfactual  \\ Interventions $T$\end{tabular}} &
+  \multicolumn{6}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterII (Type III)\\ $T_{dat2}$\end{tabular}}} &
+  \multicolumn{6}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}\modelinterI\\ $T_{hyp0}$\end{tabular}}} \\ \hline
+\nlm &
+  \multicolumn{3}{c}{\textit{\gru}} &
+  \multicolumn{3}{c|}{\textit{\tf}} &
+  \multicolumn{3}{c}{\textit{\gru}} &
+  \multicolumn{3}{c}{\textit{\tf}} \\ \hline
+\textbf{Categories} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoPR\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoPR\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c|}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoPR\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Association\\ \assoPR\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\begin{tabular}[c]{@{}c@{}}Causal Eff.\\ ATE\end{tabular}}} &
+  \multicolumn{1}{c}{\textit{\rfi}} \\ \hline
+\blocks &
+  0.026 &
+  -1.50E-05 &
+  -1.50E-05 &
+  0.186 &
+  -2.80E-05 &
+  -2.80E-05 &
+  \colorbox{blue!10}{-0.102} &
+  \colorbox{blue!10}{-0.010559} &
+  \colorbox{blue!10}{-0.010559} &
+  \colorbox{blue!10}{\textbf{0.725}} &
+  \colorbox{blue!10}{0.018004} &
+  {0.018004} \\
+\exceptions &
+  0.017 &
+  nan &
+  nan &
+  0.002 &
+  nan &
+  nan &
+  { -0.070} &
+  { nan} &
+  { nan} &
+  { 0.349} &
+  { nan} &
+  { nan} \\
+\oop &
+  0.049 &
+  nan &
+  nan &
+  0.012 &
+  nan &
+  nan &
+  { 0.019} &
+  { nan} &
+  { nan} &
+  { 0.255} &
+  { nan} &
+  { nan} \\
+\tests &
+  nan &
+  nan &
+  nan &
+  nan &
+  nan &
+  nan &
+  { -0.130} &
+  { nan} &
+  { nan} &
+  { 0.174} &
+  { nan} &
+  { nan} \\
+\declarations &
+  0.375 &
+  nan &
+  nan &
+  0.034 &
+  nan &
+  nan &
+  { -0.257} &
+  { nan} &
+  { nan} &
+  { 0.405} &
+  { nan} &
+  { nan} \\
+\conditionals &
+  0.274 &
+  nan &
+  nan &
+  -0.087 &
+  nan &
+  nan &
+  { -0.009} &
+  { nan} &
+  { nan} &
+  \colorbox{blue!10}{\textbf{0.682}} &
+  { nan} &
+  { nan} \\
+\loops &
+  0.024 &
+  nan &
+  nan &
+  0.111 &
+  nan &
+  nan &
+  { 0.042} &
+  { nan} &
+  { nan} &
+  { 0.275} &
+  { nan} &
+  { nan} \\
+\operators &
+  0.099 &
+  nan &
+  nan &
+  0.062 &
+  nan &
+  nan &
+  { -0.032} &
+  { nan} &
+  { nan} &
+  { 0.389} &
+  { nan} &
+  { nan} \\
+\datatype &
+  0.037 &
+  nan &
+  nan &
+  -0.069 &
+  nan &
+  nan &
+  { 0.002} &
+  { nan} &
+  { nan} &
+  { 0.275} &
+  { nan} &
+  { nan} \\
+\extra &
+  0.192 &
+  -3.00E-05 &
+  -3.00E-05 &
+  -0.017 &
+  5.40E-05 &
+  5.40E-05 &
+  { 0.092} &
+  \colorbox{blue!10}{ 0.014588} &
+  { 0.014588} &
+  \colorbox{blue!10}{\textbf{0.606}} &
+  { 0.014525} &
+  { 0.014525} \\ \hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%
+}
+\vspace{-0.1cm}
+
+\end{table*}
