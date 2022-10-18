@@ -1,11 +1,7 @@
-\chapter{Preliminaries}
-\label{ch:preliminaries}
+\chapter{Causal Inference for Artificial Software Engineering }
+\label{ch:causality}
 
-%------------------------------------------------
-\section{What is Deep Learning for Software Engineering (\textit{DL4SE})?}
-
-%------------------------------------------------
-\section{Causal Inference Notation for Software Engineering}
+\section{Causality In Practice}
 \label{sec:pre-ci4se}
 The ultimate goal of interpretability in Deep Learning for Software Engineering (\textit{DL4SE}) is to generate explanations of Neural Code Models' decisions represented as prediction performance (\ie Cross-Entropy or Next Token Prediction). A method to generate these explanations is based on the idea of estimating the effect of \textbf{\textit{interventions}} on the inputs or parameters that configure \nlms. When we collect datasets on possible cases that affect the generative process of \nlms, we are in fact searching for statistical or software properties that we can intervene upon to explain prediction performance. 
 
@@ -80,7 +76,3 @@ In our initial causal statement, we generally accept that buggy code \textit{cau
 In summary, our interpretability methodology \codegen is based on the idea of proposing causal queries given a SCM. These causal queries are obtained by estimating an interventional distribution where the potential outcome is generally a prediction performance value of Neural Code Model under study and the treatments are a set of software-based properties that help us construct explanations about the generative model.
 
 %------------------------------------------------
-\subsection{Code Traceability}
-
-%------------------------------------------------
-\subsection{Code Generation}

@@ -1,5 +1,5 @@
-\chapter{An Introduction to Deep Code Retrieval}
-\label{ch:appI-intro}
+\section{Deep Code Retrieval Problem}
+\label{sec:deep-retrieval-problem}
 
 The importance of traceability in modern software systems cannot be overstated. Traceability links that connect ``high-level" artifacts such as requirements and use cases to ``low-level'' artifacts written in code help to facilitate crucial components of the software development and maintenance cycle. For instance, linking requirements to code provides visibility into a system by enumerating what has been implemented, whereas linking requirements to test cases helps to provide an indication that the software is functioning as expected. Additionally, the establishment of trace links aids in facilitating a broad set of developer activities including code comprehension, change impact analysis, and compliance validation~\citep{Cleland-Huang:Springer'12}.  In certain software domains, such as those involving safety critical systems, traceability is necessarily \textit{mandated} by regulatory bodies in order to properly demonstrate the safe functioning of a system~\citep{Nejati:IST'12,Rempel:ICSE'14,Cleland-Huang:ICSE'10,Mader:Soft'13}. Furthermore, traceability is increasingly used to help ensure the \textit{security} of a given system~\citep{Nhlabatsi:SST'15}. For example, our industrial partners at Cisco Systems, Inc. require that security-critical requirements are verified by a dedicated group of analysts to avoid software threats and ensure best practices. 
 
@@ -26,9 +26,8 @@ The limitations discussed above stem from both technical and practical limitatio
 	\item{An open source, commercial-grade traceability benchmark, developed in coordination with our industrial partner, for the benefit of the research community;}
 	\item{An online appendix, including our open source implementation of \Comet and evaluation data for reproducibility~\cite{appendix}}.
 \end{itemize}
-%------------------------------------------------
 
-\section{Problem Formalization}
+\subsection{Formalization}
 
 Our goal is to design a model that captures meaningful information regarding logical relationships between software artifacts, and then use this model to infer a set of candidate trace links. More specifically, given a set of source artifacts $S$ (\eg requirements, use cases) such that $S = \{S_{1},S_{2},\ldots S_{n}\}$ and a set of target artifacts $T$ (\eg source code files, test cases) such that $T = \{T_{1},T_{2},\ldots T_{n}\}$, we aim to infer whether a trace link $L$ exists between all possible pairs of artifacts in $S$ and $T$ such that $L = \{(s,t) | s\in S, t\in T, s\leftrightarrow t\}$ where each pair of artifacts $s$ and $t$ are said to be logical trace links.
 
