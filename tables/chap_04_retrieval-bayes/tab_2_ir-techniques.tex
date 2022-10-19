@@ -1,0 +1,29 @@
+
+
+\begin{margintable}
+\centering
+\caption{IR/ML Techniques used in the Construction of C{\tiny OMET}'s HBN}
+\label{tab:ir-techniques-hbn}
+\scalebox{0.7}{%
+
+\begin{tabular}{@{}l|c|c@{}}
+\toprule
+\multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Information Retrieval \\ Technique\end{tabular}}} &
+  \textbf{Tag} &
+  \textbf{\begin{tabular}[c]{@{}c@{}}Treshold \\ Technique\end{tabular}} \\ \midrule
+Vector Space Model          & VSM     & Link-Est \\
+Latent Semantic Indexing    & LSI     & Link-Est \\
+Jensen-Shannon Divergence   & JS      & Min-Max  \\
+Latent Dirichlet Allocation & LDS     & Min-Max  \\
+\begin{tabular}[c]{@{}l@{}}NonNegative \\ Matrix Factorization\end{tabular} &
+  NMF &
+  Median \\
+Combined VSM + LDA          & VSM+LDA & Link-Est \\
+Combined JS+LDA             & JS+LDA  & Link-Est \\
+Combined VSM+NMF            & VSM+NMF & Link-Est \\
+Combined JS+NMF             & JS+NMF  & Link-Est \\
+Combined VSM+JS             & VSM+JS  & Min-Max  \\ \bottomrule
+\end{tabular}
+
+}
+\end{margintable}

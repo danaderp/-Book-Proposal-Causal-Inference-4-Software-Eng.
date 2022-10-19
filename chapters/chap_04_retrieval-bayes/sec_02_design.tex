@@ -1,0 +1,78 @@
+\section{Design}
+\label{sec:design-hbn}
+
+To evaluate \Comet, we perform an extensive empirical evaluation with two major \textit{goals}: (i) evaluate the effectiveness of the four stages of \Comets HBN in terms of their ability to effectively infer trace links, and (ii) examine whether \Comet is applicable in industrial workflows. The \textit{quality focus} of our study is \Comets effectiveness, in terms of generating an accurate and complete set of trace links, and practical applicability. We formulate the following set of RQs:
+
+\begin{itemize}
+
+	\item{\textbf{RQ$_1$}: \textit{How effective is \Comet at inferring candidate trace links using combined information from IR/ML techniques?}}
+
+	\item{\textbf{RQ$_2$}: \textit{To what extent does expert feedback impact the accuracy of the candidate trace links of \Comet?}}
+
+	\item{\textbf{RQ$_3$}: \textit{To what extent does information from transitive links improve \Comets trace link inference accuracy?}}
+
+	\item{\textbf{RQ$_4$}: \textit{How effective is the holistic \Comet model in terms of inferring candidate trace links?}}
+
+	\item{\textbf{RQ$_5$}: \textit{Do professional developers and security analysts find our implementation of the \Comet Jenkins plugin useful?}}
+	
+\end{itemize}
+
+%------------------------------------------------
+
+\input{tables/chap_04_retrieval-bayes/tab_1_subjects}
+
+\textbf{Subject Datasets.} The \textit{context} of this empirical study includes the eight datasets shown in \tabref{tab:datasets-hbn}. Six of these are taken from the open source CoEST community datasets~\cite{coest-datasets}. These datasets represent a set of benchmarks created by the research community and widely used as an effective assessment tool for automated traceability techniques~\citep{Antoniol:e,Cleland-Huang:TSE'03,Poshyvanyk:TEFSE'11,Gethers:ICSM'11}. In order to maintain the quality of our experimental subjects, we do not use all available projects in the CoEST repository, as we limited our studied systems to those that: (i) included trace links from requirements or use cases written in natural language to some form of code artifact, (ii) were written in English and/or included English translations, and (iii) had at least 1k LoC.  We utilize two datasets to investigate and tune the hyper-parameters of \Comets HBN, Albergate, and the Rq$\rightarrow$Tests dataset of the EBT project. We utilize the other six datasets for our empirical evaluation. The subject system called ``LibEST'' is an open source networking related software project, which was created and is actively maintained by engineers at Cisco as an implementation of RFC-7030 ``Enrollment over Secure Transport''. We derived the ground truth set of trace links between Rq$\rightarrow$Src and Rq$\rightarrow$Tests for this dataset in close collaboration with our industrial partner. First, one of the authors carefully created an initial set of trace links. Then, an engineer working on the project reviewed the links and confirmed or denied a subset, based on their availability. The author then revised the links using the engineer's feedback, and this process continued over several months until the ground truth was established. The "LibEST" dataset is available along with all of our experimental data to facilitate reproducibility~\citep{appendix}.
+
+%------------------------------------------------
+
+\textbf{Studied IR Techniques}
+
+The ``base'' first stage of \Comets HBN is able to utilize and unify information regarding the textual similarity of development artifacts as computed by a set of IR/ML techniques.  While there is technically no limit to the number of IR/ML techniques that can be utilized, we parameterized our experiments using ten IR-techniques enumerated in \tabref{tab:ir-techniques-hbn}. The first five techniques are standalone techniques, whereas the second five are combined techniques utilizing the methodology introduced by Gethers \etal~\citep{Gethers:ICSM'11}. This combined approach normalizes the similarity measures of two IR techniques and combines the similarity measures using a weighted sum. We set the weighting factor $\lambda$ for each technique equal to 0.5, as this was the best performing configuration reported in the prior work~\citep{Gethers:ICSM'11}. We explain the differences between the technique employed by Gethers et. al. and \Comet in \secref{sec:related-work}. The other parameters for each of the techniques were derived by performing a series of experiments on the two tuning datasets, and using the optimal values from these experiments. For all IR techniques, we preprocessed the text by removing non-alphabetic characters and stop words, stemming, and splitting camelCase. We performed 30 trials for each technique involving LDA, and chose the number of topics that led to optimal performance on our tuning projects. To aid in experimental reproducibility, complete configurations for each technique are listed in our online appendix~\citep{appendix}.
+
+\input{tables/chap_04_retrieval-bayes/tab_2_ir-techniques}
+
+%------------------------------------------------
+
+\subsection{RQ$_1$: C{\footnotesize OMET} Performance w/ Combined IR/ML Techniques}
+\label{sub:study-rq1}
+
+To answer RQ$_1$, we ran the first stage of \Comets HBN on our six evaluation datasets using the ten IR/ML techniques enumerated in Table \tabref{tab:ir-techniques-hbn}. However, as explained in \secref{subsec:model-comp1}, in order to accurately estimate the likelihood function $Y$ we need to choose a threshold $k_i$ for each IR technique that maximizes the precision and recall of the trace links according to the computed textual similarity values. To derive the best method for determining the threshold for each IR technique, we performed a meta evaluation on our two tuning datasets. We examined five different threshold estimation techniques: (i) using the mean of all similarity measures for a given dataset, (ii) using the median of all similarity measures across a given dataset, (iii) using a Min-Max estimation, (iv) a sigmoid estimation, and (v) link estimation (Link-Est), where an estimation of the number of confirmed links for a dataset is made based on the number of artifacts, and a threshold derived to ensure that the estimated number of links is above that threshold.  We performed each of these threshold estimation techniques for all studied IR techniques across our two tuning datasets, and compared each estimation to the known optimal threshold. We used the optimal technique across our two tuning datasets, as reported in \tabref{tab:ir-techniques-hbn}. To aid in reproducibility, we provide a detailed account of these experiments in our online appendix~\citep{appendix}.
+
+To provide a comparative baseline against which we can measure \Comets performance, we report results for the best-performing and median of the studied IR/ML techniques, optimally configured for each dataset. We chose to optimally configure the baseline techniques, even though such configurations would not be possible in practice due to the absence of a ground truth, in order to illustrate how close Comet can come to the ``best-case baseline scenario''. 
+
+To provide a comprehensive comparison of \Comet to a state of the art technique for candidate trace link generation, we re-implemented the DL-based approach proposed by Guo \etal\citep{Guo:ICSE'17}. However, it should be noted that the intended purpose of this DL approach and Comet differ. The DL technique proposed by Guo \etal was intended to be both trained and evaluated on a single project that contains a set of \textit{pre-existing} trace links the model can be trained upon, and was quite effective in improving the accuracy of trace links in this scenario. However, as pre-existing trace links may not always exist \Comet \textit{does not} require them for analysis. Instead, our experiments aim to illustrate that \Comet can accurately infer trace links when tuned on one small set of projects, and applied to others. Therefore, we design an experimental setup where both techniques are applied on projects without pre-existing trace links. Thus, we train the DL approach on our two tuning projects, using the optimal parameters reported in~\citep{Guo:ICSE'17}. Our main goal in comparing with this DL technique is to illustrate the performance of a recent ML-based technique applied to Comet's intended ``cold-start'' use case.
+
+In order to measure the performance of our studied techniques for inferring trace links, we utilize three main metrics, Precision, Recall, and Average Precision (AP), similar to prior work that evaluates automated traceability techniques \citep{Gethers:ICSM'11,Guo:ICSE'17}. Given that candidate link generation techniques infer a probability or similarity that a trace link exists, a threshold similarity or probability value must be chosen to make the final inference. 
+
+In order to summarize the performance of our studied techniques, we calculate the Average Precision as a weighted mean of precisions per threshold: $AP = \Sigma_n(R_n-R_{n-1})P_n$ where $P_n$ and $R_n$ are the Precision and Recall at the $n$th threshold. Thus, the AP provides a metric by which we can quantitatively compare the performance of different approaches. For the results of \Comet, we report the highest AP achieved by the posterior estimation techniques outlined in Sec. \ref{sub:model-posterior}. In addition to AP, we also provide Precision/Recall (P/R) curves to illustrate the trade-off between precision and recall at different threshold values. Curves further away from the origin of the graph indicate better performance. In lieu of a non-parametric statistical test as suggested by recent work~\citep{Furia:TSE'19}, we perform a confidence interval analysis~\citep{Neyman:37} between our baseline techniques and Stage 1 of \Comet by calculating the standard error across different threshold values, applying bootstrapping where necessary. Thus, if one technique outperforms another within the bounds of our calculated error, it serves as a strong indication of statistical significance.
+
+%------------------------------------------------
+
+\subsection{RQ$_2$: C{\footnotesize OMET} Performance w/Expert Feedback}
+\label{sub:study-rq2}
+
+Collecting \textit{actual} developer feedback on trace links for each of our test datasets was not possible  given the time constraints on developers from our industrial partner, and we did not have access to the developers of the other projects. Thus, in order to evaluate Stage 2 of \Comets HBN, we simulated developer feedback by randomly sampling 10\% of the artifact pairs from each studied subject, and used the ground truth to provide a confidence level for each of the sampled links.  To accomplish this, we provided the model with a confidence value $c$ of 0.9 if a link existed in the ground truth, and 0.1, if the link did not exist. However, even trace links derived from experts can be error-prone. Hence, we performed three types of experiments to simulate imperfect links being suggested to our model. That is, for the set of randomly sampled links, we intentionally reversed the confidence values according to the ground truth, for 25\% and 50\% of the sampled links respectively to simulate varying degrees of human error in providing link feedback. In other words, we sampled a small number of trace links from the ground truth, and then used these links to confirm/deny links predicted by \Comet (i.e., if a ground truth link existed, and \Comet predicted it, then it was confirmed). Because developers may not be correct all of the time, we simulated this by randomly flipping the sampled ground truth, which has a similar effect to a developer incorrectly classifying certain predicted links.
+
+We set the value for the \textit{belief factor} of the developer feedback $\sigma=0.5$. For these experiments we illustrate the impact of developer feedback on AP and P/R curves for \textit{only} the sampled links. In addition to the baseline IR techniques described in the procedure for RQ$_1$, we also compare our results from Stage 2 of the model to Stage 1, to illustrate the relative improvement.
+
+%------------------------------------------------
+
+\subsection{RQ$_3$: C{\footnotesize OMET} Performance w/Transitive Links}
+\label{sub:study-rq3}
+
+To measure the impact that transitive links have on the trace link inference performance of Stage 3 of \Comets HBN, we examined the impact of transitive links between requirements as described in \secref{sub:model-comp3}. We utilize transitive requirement links rather than transitive links established by execution traces, as only one of our datasets (LibEST) had executable test cases. To derive the transitive relationships between artifacts, we computed the VSM similarity among all source documents for each dataset (\eg requirements, use cases) and explored two values for the threshold $\tau$, 0.65, and 0.5. We derived these thresholds by examining the total number of transitively linked requirements in our tuning datasets to achieve a balance between too many and too few requirements being linked. We set the \textit{belief factor} $\rho$ for Stage 3 of the HBN equal to 0.5. We report results for these experiments for only those requirements where transitive links impacted \Comets performance.
+
+%------------------------------------------------
+
+\subsection{RQ$_4$: Holistic C{\footnotesize OMET} Performance}
+\label{sub:study-rq4}
+
+To evaluate the overall performance of \Comets holistic model, we combined our experimental settings for RQ$_2$ \& RQ$_3$. That is, we randomly sampled 10\% of the links from each dataset and simulated developer feedback with a 25\% error rate. Additionally, we incorporated transitive links between requirements using the same procedure outlined for RQ$_3$. For the transitive links, we set $\tau$ to 0.65, and we set the $\sigma$ and $\rho$ hyper-parameters both equal to 0.5. For this research question, we report results across all links.
+
+%------------------------------------------------
+
+\subsection{RQ$_5$: C{\footnotesize OMET} Industrial Case Study}
+\label{sub:study-rq6}
+
+Given that the ultimate goal of designing \Comet is for the approach to automate trace link recovery within industry, we perform a case study with our industrial partner. This case study consisted of two major parts.
+First, we conducted a feedback session with six experienced developers who have been contributing to the LibEST subject program. This session consisted of a roughly 15 minute presentation introducing the \Comet Jenkins plugin. Then the developers were asked to use the plugin, which had been configured for LibEST, and evaluate the links and non links for which the model was most confident (\ie the highest and lowest inferred probabilities). Then after using the tool, they were asked a set of likert-based user experience (UX) questions derived from the SUS usability scale by Brooke \citep{Brooke:96}. Additionally, participants were asked free-response user preference questions based on the honeycomb originally introduced by Morville~\citep{Morville:04}. Second, we conducted semi-structured interviews with two groups consisting of roughly 15 engineering managers who specialize in auditing software for security assurance. During these interviews, a video illustrating the \Comet plugin was shown, and a discussion was conducted with the questions illustrated in \figref{fig:LibEST-study}. We report results from both studies.

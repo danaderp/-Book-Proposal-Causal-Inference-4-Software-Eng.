@@ -1,0 +1,35 @@
+\begin{table}[b]
+\centering
+\caption{Datasets used for \Comets evaluation. Req = Requirement, Src = Source code, UC = Use Case}
+\label{tab:datasets-hbn}
+
+\scalebox{0.8}{%
+\begin{tabular}{@{}llccccc@{}}
+\toprule
+\multicolumn{1}{c|}{\textbf{Dataset}} &
+  \multicolumn{1}{c|}{\textbf{Language}} &
+  \multicolumn{1}{c|}{\textbf{Size (LoC)}} &
+  \textbf{\begin{tabular}[c]{@{}c@{}}\#Source \\ Artifacts\end{tabular}} &
+  \textbf{\begin{tabular}[c]{@{}c@{}}\#Target\\ Artifacts\end{tabular}} &
+  \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}\#Pairs \\ (\#Links)\end{tabular}}} &
+  \textbf{Type} \\ \midrule
+\multicolumn{7}{c}{\textbf{Training Datasets}}                                                                                                           \\ \midrule
+\multicolumn{1}{l|}{Albergate} & \multicolumn{1}{l|}{Java}      & \multicolumn{1}{c|}{10,464} & 55  & 17  & \multicolumn{1}{c|}{935/53}    & Req $\to$ Src  \\
+\multicolumn{1}{l|}{EBT}       & \multicolumn{1}{l|}{Java}      & \multicolumn{1}{c|}{1,747}  & 40  & 25  & \multicolumn{1}{c|}{1000/51}   & Req $\to$ Test \\ \midrule
+\multicolumn{7}{c}{\textbf{Experimental Datasets}}                                                                                                       \\ \midrule
+\multicolumn{1}{l|}{\multirow{2}{*}{LibEST}} &
+  \multicolumn{1}{l|}{\multirow{2}{*}{C}} &
+  \multicolumn{1}{c|}{\multirow{2}{*}{70,977}} &
+  59 &
+  11 &
+  \multicolumn{1}{c|}{649/204} &
+  Req $\to$ Src \\
+\multicolumn{1}{l|}{}          & \multicolumn{1}{l|}{}          & \multicolumn{1}{c|}{}       & 59  & 18  & \multicolumn{1}{c|}{1062/352}  & Req $\to$ Test \\
+\multicolumn{1}{l|}{eTour}     & \multicolumn{1}{l|}{Java}      & \multicolumn{1}{c|}{23,065} & 58  & 116 & \multicolumn{1}{c|}{6728/308}  & UC $\to$ Src   \\
+\multicolumn{1}{l|}{EBT}       & \multicolumn{1}{l|}{Java}      & \multicolumn{1}{c|}{1,747}  & 40  & 50  & \multicolumn{1}{c|}{2000/98}   & Req $\to$ Src  \\
+\multicolumn{1}{l|}{SMOS}      & \multicolumn{1}{l|}{Java}      & \multicolumn{1}{c|}{9,019}  & 67  & 100 & \multicolumn{1}{c|}{6700/1044} & UC $\to$ Src   \\
+\multicolumn{1}{l|}{iTrust}    & \multicolumn{1}{l|}{Java, JSP} & \multicolumn{1}{c|}{38,087} & 131 & 367 & \multicolumn{1}{c|}{48077/399} & Req $\to$ Src  \\ \bottomrule
+\end{tabular}
+}
+
+\end{table}

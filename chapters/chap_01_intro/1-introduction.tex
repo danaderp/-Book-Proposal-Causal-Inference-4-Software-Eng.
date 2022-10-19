@@ -1,5 +1,14 @@
 \chapter{Introduction} % The asterisk * leaves out this chapter from the table of contents
 \label{ch:intro}
 
+
+\newthought{This dissertation}
+
 %------------------------------------------------
 \section{A Motivating Example}
+
+%------------------------------------------------
+\section{Terminology}
+
+\subsection{Interpretability}
+Neural Language Models (NLM) are increasingly being used in Software Engineering as \textit{Code Generators} showing promising results in generating correct and realistic code. Intepretability represents one of the major challenge limiting the deployment and usage of these models in practice, since the causal relationship between the input and output is often unclear and no cues are provided informing what influenced the generation of a specific snippet of code. In this patent we propose \codeSeqRational, a framework that allows to extract practical interpretability insights for NLM-based systems for code-related tasks. Our approach is based on a greedy algorithm which extracts the smallest subset of tokens (rationales) from the input sufficient to predict each token in the output. Next, these rationales are mapped into human-interpretable concepts by a set of mapping functions, which assign tokens to a set of categories. These include code-specific categories (\ie structural and identifiers extracted with a code parser), as well as natural language categories (\eg verbs and nouns extracted with a NL context-free grammar parser). Finally, tokens are grouped into location-aware scopes. This infrastructure allows researchers and practitioners to debug NLM outputs as well as further optimize the input to these models evaluating the importance of each token, category, or scope.

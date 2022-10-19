@@ -1526,14 +1526,14 @@
 \titleformat{\chapter}%
   [display]% shape
   {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
-  {\itshape\huge\thechapter}% label
+  {\color{gray}\bfseries\Huge\thechapter}% label %@danaderp removed \itshape
   {0pt}% horizontal separation between label and title body
-  {\huge\rmfamily\itshape}% before the title body
+  {\huge\rmfamily\bfseries}% before the title body %@danaderp removed \itshape
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
 
 \titleformat{\section}%
   [hang]% shape
-  {\normalfont\Large\itshape}% format applied to label+text
+  {\normalfont\LARGE\bfseries}% format applied to label+text %danaderp removed \itshape
   {\thesection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
@@ -1541,7 +1541,7 @@
 
 \titleformat{\subsection}%
   [hang]% shape
-  {\normalfont\large\itshape}% format applied to label+text
+  {\normalfont\Large\bfseries}% format applied to label+text %danaderp removed \itshape
   {\thesubsection}% label
   {1em}% horizontal separation between label and title body
   {}% before the title body
