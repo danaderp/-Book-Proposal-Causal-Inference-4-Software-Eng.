@@ -1,0 +1,53 @@
+\section{Background Formalization}
+
+\subsection{Neural Language Models for Code}
+
+One common barrier to the practical adoption of any \textit{ML} model is that such models often omit explanations for their output~\citep{molnar2019interpret}. These explanations must be presented in understandable terms to a human in order to facilitate confidence for model deployment~\citep{Doshi-Velez2018ConsiderationsLearning}. In this context, \textit{Interpretable Machine Learning} refers to methods and models that make the behavior and predictions of ML systems understandable to humans.  Our proposed \codeSeqRational evaluation method aims at enabling Interpretable NLMs for code. The usage of Deep Learning Models and, specifically, Neural Language Models (NLM) in Software Engineering has seen striking advances with regard to code generation and downstream SE tasks \citep{Chen2021EvaluatingCode, watson2020dl4se}. Nonetheless, researchers are unable to establish what aspects of code are actually learned by modern neural models. In this section, we present the necessary background regarding NLMs. 
+
+Neural Language Models (NLM) have been employed in Software Engineering as a technique to approximate \textit{Code Generators} $\mathcal{G}_c$. There are other definitions for these models according to their size and architecture. We can find the concept of \textit{Large Language Models (LLM)} \citep{Bender2021OnBig} or, more recently, \textit{Foundation Models} \citep{Bommasani2021OnModels}. Regardless the model name, all of them are modeling or representing sequences using deep neural networks. 
+
+In the context of SE, the goal of a language model is to find a representation of a software artifact. Software artifacts can be represented as sequence-based data consisting of tokens (\eg source code, requirements, or test cases). While other representations exist, such as graph-based models~\citep{allamanis2018learning}, we focus our discussion on sequence-based models for simplicity. We refer to SE-specific sequence-based data as software corpora $\mathcal{C}$. Given the sequential nature of $\mathcal{C}$, we can decompose $\mathcal{C} = w_1,...,w_T$ into a desired granularity of tokens, words, or sub-words \citep{Karampatsis2019} by using a transformation function $\Gamma(\mathcal{C})$. This transformation function is a tokenization method for converting a software corpus into a sequence of discrete objects $w_t$  for $1 \leqslant t \leqslant T$. Note that $w_t \in V$, where the vocabulary $V$ is a finite set. 
+
+Given this definition, a statistical language model is a probability distribution $P_{\theta}$ over a fixed granularity of sequences $\mathcal{S}$ of software corpora $\mathcal{C}$. We can factorize the joint distribution over the $t-$dimension as in \equaref{eq:llm}. 
+
+\marginnote{
+\begin{equation}
+\begin{split}
+P_{\theta}(\mathcal{S}) & = P_{\theta}(w_1,...,w_T) \\
+                        & = \prod_{t = 1}^{T} P_{\theta}(w_t | w_{t-1},...,w_1 )
+\end{split}
+\label{eq:llm}
+\end{equation}
+}
+
+Due to the discrete nature of the data, the expression $P_{\theta}(w_t | w_{t-1},...,w_1 )$ can be estimated using a classifier. The classifier, in our particular case, is a neural language model (NLM) \citep{Bengio2003AModel}. Hence, rather than using \textit{n}-grams or Markov Models to approximate $P_{\theta}(w_t | w_{t-1},...,w_1 )$ \citep{Karampatsis2020Open-VocabularyAbstract}, it is convenient to use a latent model $P_{\theta}(w_t | w_{t-1},...,w_1 ) \approx P(w_t | h_t )$, where $h_t$ is known as a \textit{hidden state} that embeds the sequence information from past observations up to the time step $t$.
+
+Depending on \textit{how} the sequence is processed, the hidden state $h_t$ can be computed using either an autoregressive network (\ie such as a Transformer~\citep{vaswani2017transformers}) or recurrent neural network (RNN). Autoregressive models update the hidden state $h_t = f(h_{t-1}, w_{<t})$ using past inputs $w_{<t}$ and a previous hidden state $h_{t-1}$. Conversely, recurrent models update the hidden state $h_t = f(h_{t-1}, w_{t})$ using just the current input $w_{t}$ and a previous hidden state $h_{t-1}$. In other words, autoregressive models function in a feed-forward manner that predict future values from historical values directly, while recurrent models predict future values from past information encoded into a hidden state. 
+Our proposed \codeSeqRational methodology is designed to be compatible with either type of NLM.
+
+\textbf{Special Case: Encoder-Decoder Architecture.} For language models used in machine translation, sequences $\mathcal{S}$ can be decomposed into input $\mathcal{S}_v = v_{<M}$ and output $\mathcal{S}_w = v_{<T}$. Thus, \equaref{eq:llm} is updated to include an input sequence:
+
+\begin{equation}
+\begin{split}
+P_{\theta}(\mathcal{S}_v,\mathcal{S}_w) & = P_{\theta}(v_1,...,v_M,w_1,...,w_T) \\
+                        & = \prod_{t = 1}^{T} P_{\theta}(w_t | w_{<t}, v_{1:M} )
+\end{split}
+\label{eq:llmML}
+\end{equation}
+
+\textbf{Modeling Long Range Code Dependencies.} NLMs trained on source code have the ability to generate tokens or sub-words given a history. Hence, these models are employed as generative models $w_t  \backsim P(w_t | w_{t-1},...,w_1 )$. Both autoregressive and RNN models share a common property: \textit{the ability to connect previously processed information to a present task, such as using an initial sequence of tokens to predict new code tokens}. The resulting auto-completed sequence should be coherent in relation to the context of the initial sequence. That is, the predicted token $w_t$ is \textit{conditioned} by the previous information. This property is known as the ability to model \textit{long-range or long-term dependencies}~\citep{karpathy2015understand}.
+
+\begin{equation}
+\hat{w_t} = P_{\theta}(w_t | w_{t-1,...,w_1} ) = \sigma(y)_t = \frac{e^{y_{w_t}}}{\Sigma_i e^{y_i}}
+\label{eq:long}
+\end{equation}
+
+\noindent In the above equation, $y_i$ represents the non-normalized log-probabilities for each output token $i$. This estimation relies on the softmax function. The softmax $\sigma_t$ returns a distribution over predicted output classes, in this case, the classes are each token in the previously introduced vocabulary $V$. 
+It is expected that the predictions contained in $\sigma_t$ are influenced by previous inputs of the sequence 
+
+\begin{equation}
+H(P,Q) = - \sum_{t \in T} P(w_t | h_t) \log Q(w_t | w_{<t})
+\label{eq:cross}
+\end{equation}
+
+In past SE studies on NLMs for code, models have typically been evaluated without explicitly investigating their ability to model long range dependencies. \equaref{eq:cross} is typically used to depict the cross-entropy loss, notice that the term $Q(w_t| W_{<t})$ represents the approximated distribution of the ground truth using a one-hot vector.

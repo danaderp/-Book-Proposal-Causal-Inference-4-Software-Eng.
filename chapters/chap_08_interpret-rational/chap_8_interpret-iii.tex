@@ -1,0 +1,25 @@
+\chapter{Code Rationales for \break Neural Language Models}
+\label{ch8:rationales}
+
+%Approach
+Although multiple deep learning studies work on code generation by means of language modeling \cite{Cruz-Benito}, literature shows that those studies focus mainly on traditional machine learning metrics  (i.e., loss and accuracy metrics to evaluate the results obtained by the generative process) omitting interpretability methods. Thus, the development of tailored methods for interpretability of \textit{Code Generation} remains unexplored. Unfortunately, interpretability methods have been omitted in recent studies of deep learning for software engineering. This patent lays out a formalization to introduce an interpretability method, called \codeSeqRational, that can assist researchers to understand neural code generation. The goal of this patent is to design and develop an automated, effective, and practical interpretability approach for identifying underlying features of code generators. 
+
+Our approach \codeSeqRational is based on a proposed greedy algorithm know as \textit{sequence rationales}\cite{vafa2021rationales}, which finds the minimum set of words that most contribute for the prediction of a specific token. Such set of words can be employed to generate local or global explanations of a NLM. Local post-hoc interpretability aims at generating an explanation for a single sample, while global post-hoc interpretability generates explanations for a whole model. 
+
+Firstly, \textit{Sequence rationales} adapted to source code provide a fine-grained (token-level) and local (single sample) interpretation of generated output. Secondly, on top of this, our approach defines a set of mapping functions which assign each token to a hierarchy of code and natural language concepts. In practice, a semantic parser is used to analyze the input and output of the model. The parser is able to identify code and natural language tokens, recognize tokens and assign them to different categories based on the token's role. For example, the token \texttt{foo} in the statement \texttt{int foo = 5;} is recognized as a variable name (low-level category), which is part of the identifiers (higher-level category). Thirdly, the token is assigned to a scope category based on its location within the input code (\eg package, class, or method level). Lastly, once these tokens are classified in different levels and categories, \codeSeqRational offers several functions to aggregate rationales from the tokens of each category. For example, the variable name category (\ie all tokens representing variable names) and method name category can be compared in terms of how much they contribute to the output generation, for the given code task at hand.
+
+Furthermore, \codeSeqRational offers a methodology and infrastructure to obtain interpretability insights about NLM on code. This framework enables researchers, AI practitioners, and customers to produce explanation which can be useful in several practical scenarios. Specifically, our infrastructure can be used two-fold for \textit{debugging} and \textit{optimizing} NLMs for code generation and code-related tasks. 
+
+Although interpretability is a young field in ML, producing explanations can be very useful for debugging generative models. On the one hand, interpretability insights provided by \codeSeqRational can be used to investigate specific output generation, for example an incorrect variable token in the generated code snippet. Additionally, global explanation could be extracted for classes/set of output (\eg syntactically incorrect generation, failing tests, code containing security issues), guiding the researchers and practitioners towards the resolution. On the other hand, the optimization would focus on finding parts of the training data (or sets of tokens) that most contribute to code generation. Our method \codeSeqRational can be used to optimize the input space for different code-related tasks, based on the type of tokens (\ie natural language or code), categories (\ie identifiers, code structure), and scopes (\ie package, class, methods) which most influence the generation for particular tasks. For example, a source code file could be used as input to different code task, such as completing the current method, generating documentation, or test cases. However, these tasks could focus on different types of tokens and scopes, thus optimizing the input for each task could lead to performance improvements, for example by removing unnecessary parts of the input (noise) and allowing more informative tokens. This is particularly important given the limited-size of the input to NLM (often limited to 1024 tokens).
+
+%------------------------------------------------
+
+\input{chapters/chap_08_interpret-rational/sec_01_formalization}
+
+%------------------------------------------------
+
+\input{chapters/chap_08_interpret-rational/sec_02_approach}
+
+%------------------------------------------------
+
+\input{chapters/chap_08_interpret-rational/sec_03_applications}

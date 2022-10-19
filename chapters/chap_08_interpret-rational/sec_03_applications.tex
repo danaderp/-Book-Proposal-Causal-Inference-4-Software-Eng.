@@ -1,0 +1,23 @@
+\section{Applications}
+\label{sec:applications-rationales}
+
+Although \textit{interpretability} is about \textit{why} a prediction or model decision was made, our approach supports two main applications for interpretability of NLM for code-related tasks: \textit{debugging} and \textit{optimization}. These applications can be used by researchers and practitioners designing NLM-based solutions.
+
+\subsection{Debugging}
+Debugging concerns the investigation process aiming at understanding and resolving a specific problem (or bug). In this context, debugging an NLM trained on code generation task is challenging. Differently from traditional solutions based on declarative code and rules which could be investigated and modified in order to resolve a bug, an NLM-based approach has million of parameters that contribute to the generation of an output. Our approach, provides interpretability insights to link errors to specific parts of the input to the model.
+
+%Detecting bias
+
+\textbf{Local Scenario,} An NLM for code completion generates a personal identifiable information within a code statement. The ML engineer of the model uses \codeSeqRational to link the generated token (personal information) to the input tokens that contributed the most to this generation. The ML engineer inspects these tokens and defines rules to abstract such tokens in the training set, so that the newly trained model will avoid similar generations in the future. 
+
+
+\textbf{Global Scenario.} A code generation model makes two categories of mistakes, classified as $A$ and $B$. The ML engineer of the model collects different samples for the categories  $A$ and $B$, and uses \codeSeqRational to extract rationales, aggregate them over the two sets, and extract interpretability insights from them at code context scope level. The ML engineer discovers that the errors are originated from two scopes (\eg package and class). This information is used to change the input of the model.
+
+
+\subsection{Optimization}
+NLM take as input a limited-size sequence of tokens, often capped at 1024 tokens, from which the model generates an output. Given the limited nature of the input size, it is fundamental that the input space is used effectively, providing the model with the important information (tokens) while minimizing noise. Recent papers have shown the importance of providing contextual information to NLM for code generation \cite{clement2021long}, but the limited-size input of the models requires engineers to carefully decide what information to incorporate in the input. Our approach can guide ML engineers on deciding which parts of the input constitute important information to include for a specific code task.
+
+\textbf{Global Scenario.} Two NLMs have been trained for two code-related tasks $A$ and $B$. These models both take as input a source code file. However, since some source code files are quite large, the input is often truncated. The ML engineer wants to understand what parts of the input are more important for task $A$ and $B$, so that it can optimize the input for each task. Our approach is used to generate rationales and grouped them at different code scopes. The results indicate that method docstrings are particularly important for task $A$, while class information are more influential for task $B$. This information is used by the ML engineer to optimize the input for each task. 
+
+\subsection{Insights}
+Our approach can be used to validate hypotheses on feature/token importance for specific code tasks and guide model improvements. Researchers and practitioners can use \codeSeqRational to extract interpretability values, aggregate them at different levels, and test hypotheses on the influence of class of tokens on the generated output. 
