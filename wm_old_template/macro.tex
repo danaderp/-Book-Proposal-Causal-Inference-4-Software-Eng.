@@ -1,0 +1,210 @@
+\makeatletter
+
+% this  is a easy way to add and highlight new text  ...
+% just comment in/out the \tnew macro ..
+
+\newcommand{\tnew}[1]{{\bf { #1 }} }
+%\newcommand{\tnew}[1]{{ { #1 }} }
+
+% math and theorem definition
+
+\newcommand{\ndef}{\stackrel{\rm def}{=}}
+
+% this is used for draft only
+
+%\renewcommand{\baselinestretch}{2}
+
+% just to number pages in the draft
+
+\useunder{\uline}{\ul}{}
+
+% nothing i.e., no-numbering final and camera ready
+
+%\pagestyle{empty}
+
+\newcommand{\CrashScopesp}{{\textsc CrashScope~}}
+\newcommand{\CrashScopes}{{\textsc \small CrashScope's~}}
+\newcommand{\CrashDroid}{{\textsc CrashDroid~}}
+\newcommand{\CrashScopebf}{{ \textbf{\textsc CrashScope~}}}
+
+\newcommand{\ReDraw}{{\textsc{\small ReDraw}}\xspace}
+\newcommand{\ReDraws}{{\textsc{\small ReDraw's}}\xspace}
+\newcommand{\Remaui}{{\textsc{\small Remaui}}\xspace}
+\newcommand{\Remauis}{{\textsc{\small Remaui's}}\xspace}
+\newcommand{\CrashScope}{{\textsc{\small CrashScope}}\xspace}
+\newcommand{\MonkeyLab}{{\textsc{\small MonkeyLab}}\xspace}
+\newcommand{\pixcode}{{pix2code}\xspace}
+
+\newcommand{\GVTsp}{{\textsc{\small Gvt~}}}
+\newcommand{\GVT}{{\textsc{\small Gvt}}}
+\newcommand{\GVTs}{{\textsc{\small Gvt's~}}}
+\newcommand{\dv}{{\textit{DV}}\xspace}
+\newcommand{\dvs}{{\textit{DVs}}\xspace}
+\newcommand{\gc}{{\textit{GC}}\xspace}
+\newcommand{\gcs}{{\textit{GCs}}\xspace}
+\newcommand{\mgc}{{\textit{M-GC}}\xspace}
+\newcommand{\mgcs}{{\textit{M-GCs}}\xspace}
+\newcommand{\igc}{{\textit{I-GC}}\xspace}
+\newcommand{\igcs}{{\textit{I-GCs}}\xspace}
+
+
+\newcommand{\ReDrawAbs}{{R}{\ssmall E}{D}{\ssmall RAW}\xspace}
+
+
+
+
+\newsavebox\CBox
+\newlength\CLength
+%\def\circled#1{\sbox\CBox{#1}%
+%  \ifdim\wd\CBox>\ht\CBox \CLength=\wd\CBox\else\CLength=\ht\CBox\fi
+%    \makebox[1.2\CLength]{\makebox(0,0.9\CLength){\put(0,0){\circle{1.3\CLength}}}%
+%    \makebox(0,1.0\CLength){\put(-.5\wd\CBox,0){#1}}}}
+
+\def\circledlong#1{\sbox\CBox{#1}%
+  \ifdim\wd\CBox>\ht\CBox \CLength=\wd\CBox\else\CLength=\ht\CBox\fi
+    \makebox[1.2\CLength]{\makebox(0,0.6\CLength){\put(0,0){\circle{1.3\CLength}}}%
+    \makebox(0,0.6\CLength){\put(-.5\wd\CBox,0){#1}}}}
+
+\lstset{
+	basicstyle=\footnotesize\ttfamily,
+	breaklines=true,
+    frame=tb, % draw a frame at the top and bottom of the code block
+    tabsize=4, % tab space width
+    showstringspaces=false, % don't mark spaces in strings
+    numbers=left, % display line numbers on the left
+    commentstyle=\color{Red}, % comment color
+    keywordstyle=\color{blue}, % keyword color
+    stringstyle=\color{OliveGreen}, % string color
+	xleftmargin=.25in %align numbers to left side
+}
+
+%------------------------------------------------
+% This block contains THESIS COMMANDS
+%------------------------------------------------
+
+%%%%%%%%%%% APPROACH
+\newcommand{\codegen}{\textit{do$_{code}$}\xspace}
+\newcommand{\ct}{\textit{c\&t}\xspace}
+\newcommand{\nlms}{NCMs\xspace}
+\newcommand{\nlm}{NCM\xspace}
+
+\newcommand{\lambdacodegen}{{$causal$Code$Gen$}\xspace}
+\newcommand{\rhocodegen}{{$\rho$Code$Gen$}\xspace}
+\newcommand{\ccp}{\textit{CCP}\xspace}
+\newcommand{\js}{$JSD$\xspace}
+
+\newcommand{\asofte}{\textit{A-Soft-E}\xspace}
+\newcommand{\asw}{\textit{Software$_{2.0}$}\xspace}
+
+
+\newcommand{\codeSeqRational}{{\textbf{\textit{codeSeqRational}}}\xspace}
+\newcommand{\shapleyCode}{{\textbf{\textit{shapCode}}}\xspace}
+\newcommand{\codeXplainer}{{\textbf{\textit{codeXplainer}}}\xspace}
+
+%%%%%%%%%% Counterfactual Interventions
+\newcommand{\datainterI}{\textit{ProgramRepair}\xspace}
+\newcommand{\datainterII}{\textit{SemanticPreserving}\xspace}
+\newcommand{\datainterIII}{\textit{UnCommenting}\xspace}
+
+\newcommand{\modelinterI}{\textit{NumberLayers}\xspace}
+\newcommand{\modelinterII}{\textit{NumberUnits}\xspace}
+
+%%%%%%% Effects
+\newcommand{\assoJS}{JS Dist.\xspace}
+\newcommand{\assoPR}{Pearson\xspace}
+
+%%%%%%%% Refutations
+
+\newcommand{\rfi}{$\mathcal{R}_1$\xspace}
+
+%%%%% DATASETS
+\newcommand{\training}{\textit{CodeSearchNet}\xspace}
+\newcommand{\BuggyTB}{\textit{BuggyTB}\xspace}
+\newcommand{\CommentsTB}{\textit{CommentsTB}\xspace}
+\newcommand{\BigCloneIITB}{\textit{BigClone2TB}\xspace}
+\newcommand{\BigCloneIIITB}{\textit{BigClone3TB}\xspace}
+\newcommand{\BigCloneTB}{\textit{BigCloneTB}\xspace}
+
+%%%%%% TAXONOMY
+\newcommand{\blocks}{\texttt{\small[blocks]}\xspace}
+\newcommand{\tests}{\texttt{\small[tests]}\xspace}
+\newcommand{\oop}{\texttt{\small[oop]}\xspace}
+\newcommand{\declarations}{\texttt{\small[declarations]}\xspace}
+\newcommand{\exceptions}{\texttt{\small[exceptions]}\xspace}
+\newcommand{\datatype}{\texttt{\small[datatype]}\xspace}
+\newcommand{\loops}{\texttt{\small[loops]}\xspace}
+\newcommand{\operators}{\texttt{\small[operators]}\xspace}
+\newcommand{\conditionals}{\texttt{\small[conditionals]}\xspace}
+\newcommand{\extra}{\texttt{\small[extraTokens]}\xspace}
+
+%%%%%%%% REFERENCES
+\newcommand{\secref}[1]{Sec.\S~\ref{#1}\xspace}
+\newcommand{\chapref}[1]{Chapter~\ref{#1}\xspace}
+\newcommand{\appref}[1]{Appendix~\ref{#1}\xspace}
+\newcommand{\figref}[1]{Fig.~\ref{#1}\xspace}
+\newcommand{\listref}[1]{Listing~\ref{#1}\xspace}
+\newcommand{\equaref}[1]{Equation~\ref{#1}\xspace}
+\newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
+
+%%%%%%%%MODELS
+\newcommand{\rnn}{RNN$_{1,1024}$\xspace}
+\newcommand{\gru}{GRU$_{1,1024}$\xspace}
+\newcommand{\grui}{GRU$_{2,1024}$\xspace}
+\newcommand{\gruii}{GRU$_{3,1024}$\xspace}
+\newcommand{\gruiii}{GRU$_{1,512}$\xspace}
+\newcommand{\gruiv}{GRU$_{1,2048}$\xspace}
+
+\newcommand{\tf}{TF$_{6,12}$\xspace}
+\newcommand{\tfi}{TF$_{12,12}$\xspace}
+\newcommand{\tfii}{TF$_{24,12}$\xspace}
+
+\newcommand{\Comet}{{\sc Comet}\xspace}
+\newcommand{\Comets}{{\sc Comet's}\xspace}
+
+%%%%% COMMONS
+%\newcommand{\ie}{\textit{i.e.,}\xspace}
+%\newcommand{\eg}{\textit{e.g.,}\xspace}
+\newcommand{\hairsp}{\hspace{1pt}} % Command to print a very short space
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace} % Command to print i.e.
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace} % Command to print e.g.
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\etal}{et al.\xspace}
+\newcommand{\etals}{et al.'s\xspace}
+\newcommand{\aka}{\textit{a.k.a.}\xspace}	
+\newcommand{\REF}{{\color{red} \textbf{[REFS]}}\xspace}
+
+%%%%% THEOREM
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{exmp}{\underline{Example}}[chapter]
+
+%%%%% FIGURES
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
+
+
+%%%%% COMMENTS
+\newboolean{showcomments} %comments
+\setboolean{showcomments}{true} %comments
+\ifthenelse{\boolean{showcomments}} %comments
+  {\newcommand{\nb}[2]{
+    \fbox{\bfseries\sffamily\scriptsize#1}
+    {\sf\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}
+   }
+   \newcommand{\cvsversion}{\emph{\scriptsize$-$Id: macro.tex,v 1.9 2005/12/09 22:38:33 giulio Exp $}}
+  }
+  {\newcommand{\nb}[2]{}
+   \newcommand{\cvsversion}{}
+  }
+
+\newcommand{\david}[1]{ {\color{blue} \nb{DAVID}{#1} } } %personalization
+\newcommand{\DENYS}[1]{{\color{blue} \nb{DENYS}{#1}}}   %personalization
+%\newcommand{\comment}[1]{}
+
+
+%%%%% TUFTE
+
+\newcommand\newthought[1]{%
+   \addvspace{1.0\baselineskip plus 0.5ex minus 0.2ex}%
+   \noindent\textsc{#1}%
+}
+
