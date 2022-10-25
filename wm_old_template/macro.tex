@@ -174,8 +174,9 @@
 \newcommand{\REF}{{\color{red} \textbf{[REFS]}}\xspace}
 
 %%%%% THEOREM
+
 \newtheorem{definition}{Definition}[chapter]
-\newtheorem{exmp}{\underline{Example}}[chapter]
+\newtheorem{exmp}{\underline{Example \textbf{. ---}} }[chapter]
 
 %%%%% FIGURES
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
@@ -208,3 +209,28 @@
    \noindent\textsc{#1}%
 }
 
+\newtcolorbox{boxK}{
+    fontupper = \small,
+    sharpish corners, % better drop shadow
+    boxrule = 0pt,
+    toprule = 4.5pt, % top rule weight
+    enhanced,
+    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35} % {xshift}{yshift}{offset}{step}{options} 
+}
+
+\newcommand{\marginnote}[1]{ \begin{boxK} #1 \end{boxK} } %Adapting MarginNote for Old WM Template
+
+
+% Margin figure environment
+
+\newenvironment{marginfigure}[1][h]%
+  {\begin{figure}[#1] }
+  {\end{figure}}
+
+
+%%
+% Margin table environment
+
+\newenvironment{margintable}[1][h]%
+  {\begin{table}[#1]}
+  {\end{table}}

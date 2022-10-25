@@ -6,7 +6,9 @@
 \vspace{0.2cm}
 \label{tab:results_global}
 
-\scalebox{0.55}{%<-------SCALLING
+%\scalebox{0.55}{%<-------SCALLING
+\resizebox{\textwidth}{!}{
+
 \begin{tabular}{l|rrr|rrr|rrrrrl|rr}
 \hline
 \multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}l@{}}Counterfactual  \\ Interventions $T$ \end{tabular}}} & \multicolumn{3}{c|}{\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterI (BuggyTB)\\ $T_{dat0}$\end{tabular}}}} & \multicolumn{3}{c|}{\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterIII (CommentsTB)\\ $T_{dat1}$\end{tabular}}}} & \multicolumn{6}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}\datainterII (BigClone2/3TB)\\ $T_{dat2}$\end{tabular}}}                                                                                                       & \multicolumn{2}{c}{\multirow{2}{*}{\textbf{\begin{tabular}[c]{@{}c@{}}\modelinterI (CodeSearchNet)\\ $T_{hyp0}$\end{tabular}}}} \\ \cline{8-13}

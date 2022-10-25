@@ -1,16 +1,16 @@
 \section{The Hierarchical Bayesian \hfill \break Software Retrieval Model}
 \label{sec:approach-hbn}
 
+In this section, we provide a formal description of \Comets probabilistic model introduced at a high level in \secref{subsec:model-motivation} \david{Check This reference}. To help aid in the comprehension of \Comets underlying model, we provide a graphical representation using plate notation~\citep{Murphy:2012} in \figref{fig:model-approachI}, which we use to guide our introduction and discussion. The model in \figref{fig:model-approachI} is computed on a \textit{per link} basis, that is between all potential links between a set of source ($S$) and target artifacts ($T$). In this section we will use $S_x$ and $T_y$ to refer to a single source and target artifact of interest respectively. \Comets probabilistic model is formally structured as an HBN, centered upon a \textit{trace link prior} $\theta$ which represents the model's prior belief about the probability that $S_x$ and $T_y$ are linked.  Our model is hierarchical, as the trace link prior is influenced by a number of \textit{hyperpriors}, which are constructed in accordance with a set of \textit{hyper-parameters} that are either derived empirically, or fixed. In \figref{fig:model-approachI}, hyperpriors are represented as empty nodes, and hyper-parameters are represented as shaded blue nodes. In general, empty nodes represent latent, or hidden, variables whereas shaded nodes represent variables that are known or empirically observed quantities. The rectangles, or ``plates'' in the diagram are used to group together variables that repeat.
+
 \begin{marginfigure}%[tb]
+
 \centering
-
-\includegraphics[width=\columnwidth]{graphics/applicationsI-approach/fig1_Model-Plate-Diagram.pdf}
-
+\includegraphics[width=\columnwidth]{graphics/chap_04-bayes/fig1_Model-Plate-Diagram.pdf}
 \caption{Plate Diagram of \Comets HBN}
 \label{fig:model-approachI}
-\end{marginfigure}
 
-In this section, we provide a formal description of \Comets probabilistic model introduced at a high level in \secref{subsec:model-motivation} \david{Check This reference}. To help aid in the comprehension of \Comets underlying model, we provide a graphical representation using plate notation~\citep{Murphy:2012} in \figref{fig:model-approachI}, which we use to guide our introduction and discussion. The model in \figref{fig:model-approachI} is computed on a \textit{per link} basis, that is between all potential links between a set of source ($S$) and target artifacts ($T$). In this section we will use $S_x$ and $T_y$ to refer to a single source and target artifact of interest respectively. \Comets probabilistic model is formally structured as an HBN, centered upon a \textit{trace link prior} $\theta$ which represents the model's prior belief about the probability that $S_x$ and $T_y$ are linked.  Our model is hierarchical, as the trace link prior is influenced by a number of \textit{hyperpriors}, which are constructed in accordance with a set of \textit{hyper-parameters} that are either derived empirically, or fixed. In \figref{fig:model-approachI}, hyperpriors are represented as empty nodes, and hyper-parameters are represented as shaded blue nodes. In general, empty nodes represent latent, or hidden, variables whereas shaded nodes represent variables that are known or empirically observed quantities. The rectangles, or ``plates'' in the diagram are used to group together variables that repeat.
+\end{marginfigure}
 
 To make our model easier to comprehend, we have broken it down into four major configurations, which we call \textit{stages}, indicated by different colors in \figref{fig:model-approachI}. The first stage of our model (shown in blue at top) unifies the collective knowledge of textual similarity metrics computed by IR/ML techniques. The second stage (shown in orange at the bottom) reconciles expert feedback to improve the accuracy of inferred trace links. The third stage (shown in green in the middle) accounts for transitive relationships among development artifacts, and the fourth stage combines each of the underlying stages. It should be noted that the first stage of our model can be taken as the ``base case'' upon which the other complexities build and is always required to infer the existence of a trace link.  The order of calculation starts with the first stage and proceeds sequentially. The design and parameterization of our model presented in this section is not arbitrary, but instead based on the well-founded theory of \textit{conjugate priors}~\citep{Raiffa:61} which aids in defining appropriate distributions and hyperparameters for a given prior. We center the description of our model first upon the likelihood estimation and then around the estimation of the prior probability distribution as defined by the four stages. After defining the hyperpriors for each of the four stages we briefly discuss the inference techniques we employ to estimate the posterior probability distribution of our model and thus the probability of whether a given link exists. While this section provides an overview of our model, we discuss its instantiation (including utilized IR/ML techniques) in \secref{subsec:exp-context} \david{fix the reference}.
 
@@ -110,12 +110,12 @@ As discussed earlier, the probability that a trace link exists between a source 
 
 The holistic model combines all three underlying stages. To accomplish this, the calculations of the reward and penalty functions for affecting the mean $\mu$ of the overall prior are modified to incorporate information from both expert feedback and transitive links:
 
-\begin{equation}
+\begin{align}
 \begin{split}
 	\Upsilon \sim (1-\mu_{trans})*\sigma*D \\
 	\Sigma \sim \mu_{trans}*\sigma*(D-1)
 \end{split}
-\end{equation}
+\end{align}
 
 \noindent Then Eq. \ref{eq:mean-affect-combined} can be used to derive the new mean for the overall prior probability distribution of the model.
 

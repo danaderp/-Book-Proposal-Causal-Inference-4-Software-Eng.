@@ -1,29 +1,33 @@
 %  W&M PhD Dissertation LaTeX File
 \documentclass[cpp,11pt]{wmthesis}
 \usepackage[linesnumbered, ruled, vlined]{algorithm2e}
-\usepackage{graphicx}
+
 \usepackage{balance}
-\usepackage{caption}
 \usepackage{moresize}
 \usepackage{pbox}
 \usepackage{mathtools}
-\usepackage[TABBOTCAP]{subfigure}
+
+%\usepackage[TABBOTCAP]{subfigure}
+%\usepackage[subfigure]{tocloft}
+\usepackage{tocloft}
+\renewcommand{\cftchapfont}{\rm } %no bold in toc
+\renewcommand{\cftchappagefont}{\rm } %no bold in toc
+
 \setlength{\textfloatsep}{2pt}
 \usepackage{paralist}
 \usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage{balance}
 \usepackage[dvipsnames,table,xcdraw]{xcolor}
-\usepackage{multirow}
 \usepackage{multicol}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb,amsfonts}
+
 \usepackage{listings}
 \usepackage{setspace}
 \usepackage{verbatim}
 \usepackage[all]{nowidow}
 \usepackage{float}
 \usepackage{xspace}
-\usepackage{amssymb}
 \usepackage{ifthen}
 \usepackage{pifont}
 \usepackage{textcomp}
@@ -31,22 +35,30 @@
 \usepackage{url}
 %\usepackage{pstricks}
 \usepackage{epsfig}
-\usepackage[subfigure]{tocloft}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+
 \usepackage{latexsym}
-\usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{rotating}
 \usepackage[numbers]{natbib}
 \usepackage{mdwlist}
 \usepackage{colortbl}
 \usepackage[normalem]{ulem}
+
 \renewcommand{\rmdefault}{cmr} % Arial
 \renewcommand{\sfdefault}{cmr} % Arial
-\renewcommand{\cftchapfont}{\rm } %no bold in toc
-\renewcommand{\cftchappagefont}{\rm } %no bold in toc
+
+
+
 \usepackage{tikz}
+\usepackage[most]{tcolorbox} %For Boxes
+
+\usepackage{subcaption}  %<---Using Sub Figures
+\usepackage{caption}
+
+\usepackage{graphicx}
+\usepackage{booktabs} %<---Table Generator
+\usepackage{multirow} %<---Table Generator
+\usepackage{enumitem} %<---Arabic Enumerations
 
 %----------------------------------------------------------------------------------------
 %	MACROS
@@ -177,7 +189,65 @@
 
 \input{chapters/chap_02_prelim/2-preliminaries}
 
-%\include{Chapter-Introduction}
+%----------------------------------------------------------------------------------------
+%	CHAPTER 3: CAUSALITY 4 A-SOFTWARE-E
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_03_causality/3-causality4se}
+
+%----------------------------------------------------------------------------------------
+%	*PART I: CAUSALITY APPLICATIONS I. DEEP CODE RETRIEVAL
+%----------------------------------------------------------------------------------------
+
+\part{Causality Applications I. \hfill \break Deep Code Retrieval}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 4: DEEP CODE RETRIEVAL BAYES
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_04_retrieval-bayes/chap_4_approach-i}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 5: DEEP CODE RETRIEVAL CAUSAL EXPLORATION
+%----------------------------------------------------------------------------------------
+
+%\input{chapters/chap_05_retrieval-causal/chap_5_approach-ii}
+
+%----------------------------------------------------------------------------------------
+%	*PART II
+%----------------------------------------------------------------------------------------
+
+\part{Causality Applications II. \hfill \break Deep Code Interpretability}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 6: INTERPRETABILITY CONDITIONED
+%----------------------------------------------------------------------------------------
+\input{chapters/chap_06_interpret-conditioned/chap_6_interpret-i}
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 7: INTERPRETABILITY UNCONDITIONED
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_07_interpret-unconditioned/chap_7_interpret-ii}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 8: INTERPRETABILITY RATIONAL
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_08_interpret-rational/chap_8_interpret-iii}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 9: CONCLUSIONS
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_09_conclusions/chap_09_conclusions}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER 10: FUTURE
+%----------------------------------------------------------------------------------------
+
+\input{chapters/chap_10_futureperspective/chap_10_future}
 
 
 % Start calling the chapters Appendices
@@ -194,8 +264,9 @@
 %\nocite{NDSS04DTLS}
 
 %--Include the bibliography
-\makeThesisBib{references/bibliographyII}
-%\bibliography{references}
+%\makeThesisBib{references/bibliographyII}
+\bibliographystyle{abbrvnat-maxbibnames4}
+\bibliography{references}
 %% I did not include the following in my dissertation, so I have no knowledge
 %% of their formatting compliance. -- Ruth
 %\makeThesisVita{vita}

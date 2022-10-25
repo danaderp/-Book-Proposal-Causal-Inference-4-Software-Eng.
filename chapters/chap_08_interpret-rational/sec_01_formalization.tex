@@ -11,13 +11,13 @@ In the context of SE, the goal of a language model is to find a representation o
 Given this definition, a statistical language model is a probability distribution $P_{\theta}$ over a fixed granularity of sequences $\mathcal{S}$ of software corpora $\mathcal{C}$. We can factorize the joint distribution over the $t-$dimension as in \equaref{eq:llm}. 
 
 \marginnote{
-\begin{equation}
+\begin{align}
 \begin{split}
 P_{\theta}(\mathcal{S}) & = P_{\theta}(w_1,...,w_T) \\
                         & = \prod_{t = 1}^{T} P_{\theta}(w_t | w_{t-1},...,w_1 )
 \end{split}
 \label{eq:llm}
-\end{equation}
+\end{align}
 }
 
 Due to the discrete nature of the data, the expression $P_{\theta}(w_t | w_{t-1},...,w_1 )$ can be estimated using a classifier. The classifier, in our particular case, is a neural language model (NLM) \citep{Bengio2003AModel}. Hence, rather than using \textit{n}-grams or Markov Models to approximate $P_{\theta}(w_t | w_{t-1},...,w_1 )$ \citep{Karampatsis2020Open-VocabularyAbstract}, it is convenient to use a latent model $P_{\theta}(w_t | w_{t-1},...,w_1 ) \approx P(w_t | h_t )$, where $h_t$ is known as a \textit{hidden state} that embeds the sequence information from past observations up to the time step $t$.
@@ -27,13 +27,13 @@ Our proposed \codeSeqRational methodology is designed to be compatible with eith
 
 \textbf{Special Case: Encoder-Decoder Architecture.} For language models used in machine translation, sequences $\mathcal{S}$ can be decomposed into input $\mathcal{S}_v = v_{<M}$ and output $\mathcal{S}_w = v_{<T}$. Thus, \equaref{eq:llm} is updated to include an input sequence:
 
-\begin{equation}
+\begin{align}
 \begin{split}
 P_{\theta}(\mathcal{S}_v,\mathcal{S}_w) & = P_{\theta}(v_1,...,v_M,w_1,...,w_T) \\
                         & = \prod_{t = 1}^{T} P_{\theta}(w_t | w_{<t}, v_{1:M} )
 \end{split}
 \label{eq:llmML}
-\end{equation}
+\end{align}
 
 \textbf{Modeling Long Range Code Dependencies.} NLMs trained on source code have the ability to generate tokens or sub-words given a history. Hence, these models are employed as generative models $w_t  \backsim P(w_t | w_{t-1},...,w_1 )$. Both autoregressive and RNN models share a common property: \textit{the ability to connect previously processed information to a present task, such as using an initial sequence of tokens to predict new code tokens}. The resulting auto-completed sequence should be coherent in relation to the context of the initial sequence. That is, the predicted token $w_t$ is \textit{conditioned} by the previous information. This property is known as the ability to model \textit{long-range or long-term dependencies}~\citep{karpathy2015understand}.
 
