@@ -68,7 +68,7 @@ According to Pearl \& Mackenzie \citep{Pearl2018Causality}, CI seeks answers to 
 \begin{exmp}
 \label{exmp:js}Imagine we wish to understand the correlation between syntactic changes, \ie variable renaming, alterations in white space, \etc and a \nlms performance. One way we can study this is through computing the association of Cross-Entropy values $Y$ under two treatments, the first $T=0$, would be an unaltered code snippet and the second $T=1$ would be its Type III clone. Computing this association can be done using the JS distance $p(Y|T)\approx JS(Y^0,Y^1)$ as defined in Def.~\ref{def:js} for four models. Fig.~\ref{fig:jssimilarity} shows the distributions of $Y^0$ and $Y^1$ with their distances after applying bootstrapping as an example.
 
-\begin{figure}[h]
+\begin{figure}[th]
   \centering
   \begin{subfigure}[b]{0.46\linewidth}
     \includegraphics[width=\linewidth]{graphics/preliminaries/association/cross-entropy-rnn1-distribution-clone3-300dpi.pdf}
@@ -131,7 +131,7 @@ In addition to measuring refutation methods, it is relevant to identify cases of
 		\centering
 		\includegraphics[width=\textwidth]{graphics/fig_4_covariates_corr.jpg}
 		\caption{ \textit{Spurious Correlation} between the \textit{Number of Subwords} common cause and Cross-Entropy values ($p(Y|Z)\approx0.87$) for the \datainterI intervention generated from \tf. } 
-        \vspace{-0.5cm}
+        %\vspace{-0.5cm}
         \label{fig:covariate}
 \end{marginfigure}
 

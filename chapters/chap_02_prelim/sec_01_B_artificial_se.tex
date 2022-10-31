@@ -1,9 +1,6 @@
-\section{What is Deep Learning for Software Engineering \hfill \break (\dlse)?}
-\label{sec:asofte}
+\section{Neural Code Generators}
+\label{sec:ncg}
 
-\subsection{From \sw to \asw}
-
-\subsection{Neural Code Generators}
 \textbf{Code Representation.} Assuming a train corpus of code data (\eg code snippets) $x \in X$ is represented by a distribution with a form $p_{data}(X)$. A Neural Code Generator (\ncg) is a probability distribution $p_{model}(X)$ \textit{statistically learned} by an autoregressive (\ie Transformer) or recursive (\ie RNN) deep learning model. The question \ncg's attempt to answer is \textit{How can we learn $p_{model}$ similar to $p_{data}$?} Both are joint distributions but $p_{data}$ and $p_{model}$ behave distinctly. On the one hand, we consider $p_{data}$ observational since we are just using samples from code snippets written by humans. On the other hand, $p_{model}$ is a reconstructed probability from generalizing human snippets. 
 
 We use deep generative theory, statistical analysis, information theory, and causal inference to compare machine with human code samples using \textit{interpretability techniques}. The distribution $p_{model}$ can be sampled in two ways: conditioned $p(x|w_{<t},\theta)$ and unconditioned  $p(x|w_0,\theta)$. Note that the unconditioned distribution is approximated by performing semi-supervised learning conditioning on hyperparameters $\theta$ and a special \textit{starting token} $w_0$. If we want to represent a specific deep learning approach generating a sequence of tokens, then it is employed the notation $p_{model}(x|w_0, \theta)$, where the $model$ is any DL architecture. 

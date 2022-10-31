@@ -349,9 +349,9 @@
         \hspace{.1in}  \\
         \hspace{.1in}  \\
         \hspace{.1in}  \\ % 3 lines between signatures -- Ruth
-         \underline{\hspace*{\thesisapprovalwidth}}\\
-    {\small\thesis@memberv, \thesis@positioniv\\
-    The University of Texas at Dallas}
+%         \underline{\hspace*{\thesisapprovalwidth}}\\ % danaderp
+%    {\small\thesis@memberv, \thesis@positioniv\\      % danaderp
+%    The University of Texas at Dallas}                % danaderp
         \hspace{.1in}  \\
         \hspace{.1in}  \\
         \hspace{.1in}  \\ % 3 lines between signatures -- Ruth
