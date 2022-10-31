@@ -1,0 +1,23 @@
+\begin{table}[h]
+	\footnotesize
+	\centering
+	%	\small
+	%\vspace{-0.0cm}
+	\caption{\footnotesize AP Results from Stage 2 of \Comet with simulated expert feedback with error rates of 25\% and 50\%. The Baseline AP reported in this table is the median of the IR/ML techniques for the sampled links affected by feedback.}
+	%\vspace{-1.0em}
+	\label{tab:stage2-results}
+	\setlength{\tabcolsep}{0.1em}
+	
+\begin{tabular}{@{}l|c|c|c|c|c|c@{}}
+\toprule
+\multicolumn{1}{c|}{\textbf{Dataset}} & \textbf{Baseline} & \textbf{St.1} & \textbf{St.2 (25\%E)} & \textbf{Baseline} & \textbf{St.1} & \textbf{St.2 (50\%E)} \\ \midrule
+LibEst (Rq to Src)  & 0.52 & 0.65 & 0.96 & 0.52 & 0.65 & 0.64 \\
+LibEst (Rq to Test) & 0.28 & 0.32 & 0.80 & 0.28 & 0.32 & 0.44 \\
+eTour               & 0.48 & 0.60 & 0.66 & 0.48 & 0.60 & 0.39 \\
+EBT                 & 0.20 & 0.22 & 0.38 & 0.20 & 0.22 & 0.24 \\
+SMOS                & 0.18 & 0.17 & 0.39 & 0.18 & 0.17 & 0.17 \\
+iTrust              & 0.12 & 0.15 & 0.25 & 0.12 & 0.15 & 0.10 \\ \bottomrule
+\end{tabular}
+
+%\vspace{0.35cm}
+\end{table}

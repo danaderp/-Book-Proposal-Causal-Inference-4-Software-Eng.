@@ -290,7 +290,7 @@
 		\hspace{1in}  \\
 		
 		
-		{\fontsize{12}{5}\selectfont \copyright~Copyright by Student Name 2018}
+		{\fontsize{12}{5}\selectfont \copyright~Copyright by David A. Nader 2022}
 		
 		\end{center}
 	\end{singlespace} \end{titlepage}

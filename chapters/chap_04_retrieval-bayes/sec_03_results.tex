@@ -8,5 +8,71 @@ This section presents the results for our five proposed RQs. We highlight two P/
 \subsection{RQ$_1$ Results: C{\footnotesize OMET} Stage 1 Performance}
 \label{sub:results-rq1}
 
+\input{tables/chap_04_retrieval-bayes/tab_results_stage1}
 
 The AP values for Stage 1 of \Comets HBN are provided in \tabref{tab:stage1-4-results} alongside the $p$ values for the Wilcoxon test between Comet and the median IR/ML baseline. The P/R curves for the iTrust dataset are illustrated in \figref{fig:pr1-results}. As \tabref{tab:stage1-4-results} indicates, Stage 1 of \Comet outperforms the median IR/ML baseline across all subjects, to a statistically significant degree according to the confidence intervals. In some cases, such as for iTrust, LibEST, and eTour, Stage 1 of \Comet \textit{significantly} outperforms the median IR/ML baseline, and approaches the performance of the \textit{best} IR/ML baseline. \figref{fig:pr1-results} illustrates the P/R curve for the iTrust project, with performance that outpaces the best IR/ML technique, particularly for lower recall values. \Comet also outperforms the state of the art DL approach across all subjects, likely because the DL approach had difficulty generalizing semantic relationships across datasets.
+
+These results signal remarkably strong performance for \Comets Stage 1 model. Recall that, the Stage 1 model \textit{only} utilizes observations taken from the set of ten IR/ML techniques introduced in Sec. \ref{sub:study-rq1}, thus the fact that the Stage 1 model was able to consistently outperform the median IR/ML baselines and in some cases, nearly match the best IR/ML baseline. This indicates that \Comets HBN is capable of effectively combining the observations from the underlying IR/ML techniques for improved inference power. This is significant, as currently practitioners cannot know a-priori which IR/ML technique for traceability will perform best on a given project without pre-existing trace links. Thus, by combining the collective information of several IR techniques \Comets first stage HBN is able to perform \textit{\textbf{consistently well}}, achieving reasonably high performance \textit{\textbf{across projects}}, lending to the credibility of using Comet for projects that do not contain preexisting links. 
+
+%------------------------------------------------
+
+\subsection{RQ$_2$ Results: C{\footnotesize OMET} Stage 2 Performance}
+\label{sub:results-rq2}
+
+\input{tables/chap_04_retrieval-bayes/tab_results_stage2}
+\input{tables/chap_04_retrieval-bayes/tab_results_stage3}
+
+The AP for for Stage 2 of \Comet across all subject programs for both 25\% and 50\% error rates is given in Table \ref{tab:stage2-results}. The results indicate that Stage 2 of \Comets HBN is able to effectively incorporate expert feedback to improve the accuracy of its trace link inferences, as the Stage 2 model dramatically outperforms the median (and best) IR/ML techniques as well as the first stage of the model, with a simulated error rate of 25\%.  Even for the larger error rate of 50\%, we see Stage 2 outperform Stage 1 for LibEST (Rq$\rightarrow$Src), LibEST (Rq$\rightarrow$Tests) and EBT, while it slightly underperforms the Stage 1 model for the other subjects. These results illustrate that Stage 2 of \Comets HBN is able to effectively utilize expert feedback to improve its inferences, even in the presence of significant noise.
+
+
+\subsection{RQ$_3$ Results: C{\footnotesize OMET} Stage 3 Performance}
+\label{sub:results-rq3}
+
+\begin{figure}[h]
+\centering
+
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[clip,width=\textwidth]{graphics/chap_04-bayes/fig3_Stage1-single.pdf}
+\caption{\footnotesize P/R Curve for iTrust for Stage 1.}
+\label{fig:pr1-results}
+\end{subfigure}
+
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[clip,width=\textwidth]{graphics/chap_04-bayes/fig4_Stage4-single.pdf}
+\caption{\footnotesize P/R Curve for I-Net (Req$\rightarrow$Src) for Stage 4.}
+\label{fig:pr4-results}
+\end{subfigure}
+
+\caption{\footnotesize Selected P/R Curves for Stage 1 and Stage 4 of \Comet.  Solid grey line is median of the baseline IR/ML techniques, dotted grey lines are best and worst performing IR/ML techniques respectively.}
+
+\end{figure}
+
+The AP results for Stage 3 of \Comet, which incorporates transitive relationships between requirements, for both $\tau=0.55$ and $\tau=0.65$ are given in Table \ref{tab:stage3-results} (There were no transitive links in iTrust for $\tau=0.65$). This table also includes the median of the baseline IR/ML techniques, as well as the Comet Stage 1 model AP results, for the set of links affected by transitive relationships (hence the differing Stage 1 columns). The results show that, in general, for $\tau=0.65$ for \Comets Stage 3 model, the accuracy of \Comets inferred trace links improve, with four of the six datasets showing improvements. For $\tau=0.55$ the results generally exhibit similar or slightly worse performance compared to Stage 1.  The fact that the higher value of $\tau$ led to better performance improvements is not surprising, as this parameter essentially controls the \textit{degree of relatedness} required to consider transitive relationships. Thus, a higher value of $\tau$ means that only highly similar transitive requirement relationships are considered by \Comet's model. Using a lower value for this parameter might introduce noise by incorporating transitive relationships between artifacts that don't have as high a degree of similarity. 
+
+The LibEST (Rq$\rightarrow$Src) dataset exhibited decreased performance for $\tau=0.65$, however this is likely because the requirements for this industrial dataset are based on formal format from the Internet Engineering Task Force (IETF). The somewhat repetitive nature of the language used in these requirements could lead to non-related requirements being transitively linked, leading to a decrease in performance. This suggests leveraging transitive relationships between requirements leads to larger performance gains for more unique language. Overall, our results indicate that \Comets Stage 3 model improves the accuracy of links for a majority of subjects.
+
+%------------------------------------------------
+\subsection{RQ$_4$ Results: C{\footnotesize OMET} Holistic Performance}
+\label{sub:results-rq4}
+
+The AP results for the the holistic \Comet (Stage 4) model are given in Table \ref{tab:stage1-4-results}. These results show that \Comets holistic model outperforms the baseline median IR/ML techniques, and Stage 1 for all subject programs. For three subjects (LibEST Req$\rightarrow$Src, EBT, and iTrust), Comet's holistic model matches or outperforms the best baseline IR/ML technique. \figref{fig:pr4-results} illustrates the P/R curve for the LibEST (Req$\rightarrow$Src) dataset, which shows that the performance gains in inference precision extend for a large range of recall values. The results of these experiments demonstrate that \Comets holistic model is able to effectively combine information from multiple sources to improve its trace link inference accuracy.
+
+
+%------------------------------------------------
+\subsection{RQ$_5$ Results: Industrial Case Study}
+\label{sub:results-rq6}
+
+\begin{figure}[h]
+\centering
+%\vspace{0.2cm}
+\includegraphics[width=\columnwidth]{graphics/chap_04-bayes/fig5_libest_boxplot.pdf}
+%\vspace{-0.7cm}
+\caption{Results for LibEST Case Study UX Questions}
+%\vspace{-0.0cm}
+\label{fig:LibEST-study}
+%\vspace{-0.5cm}
+\end{figure}
+
+\figref{fig:LibEST-study} provides the responses to the likert-based UX questions from the six developers who work on the LibEST project after interacting with the \Comet plugin. Overall, the responses from these developers were quite positive. They generally agreed the \Comet plugin easy to use and understand, but more importantly, generally found the accuracy of the inferred links and non-links to be accurate. Additionally, we highlight representative responses to the user experience questions in this section, and provide the survey questions with response summaries in our online appendix~\citep{appendix}, in accordance with the NDA established with our industrial partner. Overall the developer responses were encouraging, indicating the practical need for approaches like \Comet. For instance, one developer stated their need for such a tool, \textit{``I really want a tool that could look at test cases and requirements and tell me the coverage. That way the team can know whether we are missing functionality or not.''} Another developer explained the need for a feature that incorporates developer feedback, stating the importance of the \textit{``ability to describe or explain how the code matches up with the code for future reference. Discussion/comments about such explanation as different developers might see links that others don't''}, whereas another developer stated, \textit{``Being able to provide feedback is useful and seeing it update the percentage immediately was nice.''}  This indicates that the support for developer feedback and responsiveness of the \Comet plugin inherently useful. Developers also found the traceability report to be useful, with most criticism suggesting practical UI improvements. For instance, developers appreciated \textit{``The fact that there were the three different options for viewing the traceability between different [artifacts]''}, and \textit{``The ability to bring up the specific requirement quickly in the same window.''}. These responses illustrate the utility that developers saw in the \Comet plugin. Given that these developers had little automated support for traceability tasks, they appreciated any automated assistance. 
+
+We also collected feedback that validated the importance of the practical use cases that the \Comet plugin enabled. In these interviews, the teams generally stated that \Comet would be very useful for code auditing, as one manager stated that it would \textit{``allow compliance analysts to [inspect] links, look at the code and validate [the links]''}. Furthermore, a team responsible for security audits of systems found an interesting use case for \Comet that is often overlooked in traceability analysis. That is, they were interested in code and requirements that are \textit{not linked to any other artifact}, as such artifacts are likely to be suspicious and should be inspected further. In this case, \Comets inferences of non-links would be just as important as the inferences of links. Overall, the interviewed teams saw great promise in \Comet, and expressed interest in adoption.

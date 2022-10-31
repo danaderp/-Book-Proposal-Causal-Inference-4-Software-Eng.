@@ -1,0 +1,27 @@
+\begin{table}[h]
+	\footnotesize
+	\centering
+	%	\small
+	\caption{\footnotesize AP Results from Stages 1 \& 4 of \Comet. The given $p$ values from the Wilcoxon test measure the significance of performance variations between Stage 1, and Stage 4 of \Comets model compared to the median (Med.) baseline of IR/ML techniques. ``I=Net'' signifies the ``Industry-Net'' dataset.}
+	
+	\label{tab:stage1-4-results}
+	
+\begin{tabular}{@{}l|c|c|c|c|c|c|c@{}}
+\toprule
+\multicolumn{1}{c|}{\textbf{Dataset}} &
+  \textbf{\begin{tabular}[c]{@{}c@{}}Best\\ Base.\end{tabular}} &
+  \textbf{\begin{tabular}[c]{@{}c@{}}Med.\\ Base.\end{tabular}} &
+  \textbf{std. Err} &
+  \textbf{DL} &
+  \textbf{St.1} &
+  \textbf{std. Err} &
+  \textbf{St.4} \\ \midrule
+LibEst (Rq to Src)  & 0.69 & 0.55 & pm 0.008 & 0.28 & 0.63 & pm 0.006 & 0.64 \\
+LibEst (Rq to Test) & 0.42 & 0.36 & pm 0.001 & 0.32 & 0.38 & pm 0.002 & 0.42 \\
+eTour               & 0.40 & 0.30 & pm 0.011 & 0.05 & 0.05 & pm 0.002 & 0.36 \\
+EBT                 & 0.17 & 0.14 & pm 0.005 & 0.07 & 0.07 & pm 0.001 & 0.17 \\
+SMOS                & 0.29 & 0.25 & pm 0.003 & 0.16 & 0.16 & pm 0.001 & 0.27 \\
+iTrust              & 0.17 & 0.13 & pm 0.006 & 0.01 & 0.01 & 0        & 0.17 \\ \bottomrule
+\end{tabular}
+
+\end{table}

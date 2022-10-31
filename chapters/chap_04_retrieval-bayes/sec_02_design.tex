@@ -18,6 +18,8 @@ To evaluate \Comet, we perform an extensive empirical evaluation with two major 
 \end{itemize}
 
 %------------------------------------------------
+\subsection{Experimental Context}
+\label{sub:exp-context}
 
 \input{tables/chap_04_retrieval-bayes/tab_1_subjects}
 
@@ -25,9 +27,7 @@ To evaluate \Comet, we perform an extensive empirical evaluation with two major 
 
 %------------------------------------------------
 
-\textbf{Studied IR Techniques}
-
-The ``base'' first stage of \Comets HBN is able to utilize and unify information regarding the textual similarity of development artifacts as computed by a set of IR/ML techniques.  While there is technically no limit to the number of IR/ML techniques that can be utilized, we parameterized our experiments using ten IR-techniques enumerated in \tabref{tab:ir-techniques-hbn}. The first five techniques are standalone techniques, whereas the second five are combined techniques utilizing the methodology introduced by Gethers \etal~\citep{Gethers:ICSM'11}. This combined approach normalizes the similarity measures of two IR techniques and combines the similarity measures using a weighted sum. We set the weighting factor $\lambda$ for each technique equal to 0.5, as this was the best performing configuration reported in the prior work~\citep{Gethers:ICSM'11}. We explain the differences between the technique employed by Gethers et. al. and \Comet in \secref{sec:related-work}. The other parameters for each of the techniques were derived by performing a series of experiments on the two tuning datasets, and using the optimal values from these experiments. For all IR techniques, we preprocessed the text by removing non-alphabetic characters and stop words, stemming, and splitting camelCase. We performed 30 trials for each technique involving LDA, and chose the number of topics that led to optimal performance on our tuning projects. To aid in experimental reproducibility, complete configurations for each technique are listed in our online appendix~\citep{appendix}.
+\textbf{Studied IR Techniques.} The ``base'' first stage of \Comets HBN is able to utilize and unify information regarding the textual similarity of development artifacts as computed by a set of IR/ML techniques.  While there is technically no limit to the number of IR/ML techniques that can be utilized, we parameterized our experiments using ten IR-techniques enumerated in \tabref{tab:ir-techniques-hbn}. The first five techniques are standalone techniques, whereas the second five are combined techniques utilizing the methodology introduced by Gethers \etal~\citep{Gethers:ICSM'11}. This combined approach normalizes the similarity measures of two IR techniques and combines the similarity measures using a weighted sum. We set the weighting factor $\lambda$ for each technique equal to 0.5, as this was the best performing configuration reported in the prior work~\citep{Gethers:ICSM'11}. We explain the differences between the technique employed by Gethers et. al. and \Comet in \secref{sec:discussion-hbn}. The other parameters for each of the techniques were derived by performing a series of experiments on the two tuning datasets, and using the optimal values from these experiments. For all IR techniques, we preprocessed the text by removing non-alphabetic characters and stop words, stemming, and splitting camelCase. We performed 30 trials for each technique involving LDA, and chose the number of topics that led to optimal performance on our tuning projects. To aid in experimental reproducibility, complete configurations for each technique are listed in our online appendix~\citep{appendix}.
 
 \input{tables/chap_04_retrieval-bayes/tab_2_ir-techniques}
 

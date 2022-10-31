@@ -1,0 +1,18 @@
+\chapter{On Interpreting and Understanding \break Open-Ended Neural Code Generators}
+\label{ch7:unconditioned}
+%1. Establishing the importance of the field
+% Provide background information/facts
+% Define terminology from the title/keywords
+% Present the current area/current research focus
+Deep Learning for Software Engineering (DL4SE) have shown capacity to model complex relationships and produce semantic code representations using Neural Code Generators (\ncg s) \citep{Watson2020}. These generative models have been applied in a variety of SE downstream tasks such as Code Completion \cite{Nguyen2013}, Program Synthesis \cite{Gulwani2017},  Program Repair \citep{Chen2019}, and Program Translation \cite{Aggarwal2015}. Furthermore, \ncg s have rapidly advanced from research efforts to industry-level tools. This is the case of Github Copilot\footnote{https://github.blog/2021-06-29-introducing-github-copilot-ai-pair-programmer} and Deep Mind's AlphaCode\footnote{\url{ https://storage.googleapis.com/deepmind-media/AlphaCode/competition_level_code_generation_with_alphacode.pdf}}. Although \ncg s show impressive performance on generative code  \citep{Watson2020}, few researchers have addressed the problem of \textit{interpreting} such performance by \textit{comparing} machine to human-generated code. 
+
+%2.Previous and/or current research and contributions
+\textit{Machine Learning Interpretability} refers to methods and models that make the behavior and predictions of \ncg s understandable to humans \citep{Molnar2019}. The understanding of ML models is especially relevant for SE to promote the adoption of such models in SE practices, as noted by Tantithamthavorn et al. \citep{Tantithamthavorn2019} and Dam et al. \citep{Dam2018}.
+
+%3. Locate a gap in the research. 
+% Describe the problem you will address.
+% Present a prediction to be tested. 
+In order to obtain machine-generated snippets, we must \textit{unconditionally} sample a trained \ncg. This paper refers to this type of sampling  as \textit{open-ended code generation}. Although multiple \ncg s have been proposed for code generation using language modeling (e.g., \citep{Cruz-Benito} and \citep{Chen2021}), these studies mainly focused on reporting traditional machine learning metrics (i.e., loss BLEU, and accuracy) to evaluate the learning performance omitting interpretable explanations. Therefore, studying tailored methods for interpretability of \textit{Open-Ended Code Generation} remains unexplored.
+
+%4. Describe the present paper
+This paper proposes \CodeGenXplainer, an approach to interpret \textit{Open-Ended Code Generation}. This approach encompasses four interpretability methods that complement and contextualize traditional machine learning evaluations. The interpretability methods rely on comparing statistical and SE features between machine and human-generated code. These features comprise semantic embedding representations, information theory measures, code metrics, and compilation errors. By using the interpretability we formulate the question: Are machines able to learn how to generate \textit{feasible} source code? By \textit{feasible} we refer to syntactic correct and semantic similar to human generated code. We want to investigate if autoregressive and recursive models are able to \textit{infer} code that resembles human code characteristics (\ie semantic representation, SE metrics, compilation errors, and entropy \& mutual information). 

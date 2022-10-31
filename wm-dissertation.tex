@@ -63,7 +63,7 @@
 %----------------------------------------------------------------------------------------
 %	MACROS
 %----------------------------------------------------------------------------------------
-\include{wm_old_template/macro}
+\include{macro}
 
 
 % The wmthesis class is based on the latex report class whic
@@ -164,13 +164,13 @@
 %----------------------------------------------------------------------------------------
 %	ACK PAGE
 %----------------------------------------------------------------------------------------
-\thesisAcknowledge{wm_old_template/acknowledge}
+\thesisAcknowledge{acknowledge}
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
 
-\thesisAbstract{wm_old_template/abstract} 
+\thesisAbstract{abstract} 
 
 %%--Create the dissertation Prolog
 \makeThesisProlog
@@ -199,7 +199,7 @@
 %	*PART I: CAUSALITY APPLICATIONS I. DEEP CODE RETRIEVAL
 %----------------------------------------------------------------------------------------
 
-\part{Causality Applications I. \hfill \break Deep Code Retrieval}
+\part{Causal Learning Applications: \hfill \break Deep Code Retrieval}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER 4: DEEP CODE RETRIEVAL BAYES
@@ -217,7 +217,7 @@
 %	*PART II
 %----------------------------------------------------------------------------------------
 
-\part{Causality Applications II. \hfill \break Deep Code Interpretability}
+\part{Causal Reasoning Applications: \hfill \break Deep Code Interpretability}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER 6: INTERPRETABILITY CONDITIONED
@@ -229,7 +229,7 @@
 %	CHAPTER 7: INTERPRETABILITY UNCONDITIONED
 %----------------------------------------------------------------------------------------
 
-\input{chapters/chap_07_interpret-unconditioned/chap_7_interpret-ii}
+%\input{chapters/chap_07_interpret-unconditioned/chap_7_interpret-ii}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER 8: INTERPRETABILITY RATIONAL
@@ -255,7 +255,7 @@
 %	APPENDIX PAGES
 %----------------------------------------------------------------------------------------
 \appendix
-\input{wm_old_template/appendixA}
+\input{appendixA}
 %\input{appendixB}
 %\input{appendixC}
 
@@ -264,9 +264,9 @@
 %\nocite{NDSS04DTLS}
 
 %--Include the bibliography
-%\makeThesisBib{references/bibliographyII}
-\bibliographystyle{abbrvnat-maxbibnames4}
-\bibliography{references}
+\makeThesisBib{references/bibliographyII}
+%\bibliographystyle{abbrvnat-maxbibnames4}
+%\bibliography{references/bibliographyII}
 %% I did not include the following in my dissertation, so I have no knowledge
 %% of their formatting compliance. -- Ruth
 %\makeThesisVita{vita}
